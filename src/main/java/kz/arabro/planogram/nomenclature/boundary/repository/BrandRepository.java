@@ -9,7 +9,9 @@ import java.util.Optional;
 public interface BrandRepository {
 
     void save(Brand brand);
-    Optional<Brand> findByID(BrandID aircraftID);
+    void deleteById(BrandID brandID);
+    void update(Brand brand);
+    Optional<Brand> findByID(BrandID brandID);
     List<Brand> findAll();
 
 }

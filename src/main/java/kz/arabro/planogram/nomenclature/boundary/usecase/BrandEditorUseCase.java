@@ -4,5 +4,5 @@ import kz.arabro.planogram.nomenclature.domain.entity.Brand;
 
 public interface BrandEditorUseCase {
 
-    Brand execute(Brand currentBrand, Brand targetBrand);
+    void update(Brand brand);
 }

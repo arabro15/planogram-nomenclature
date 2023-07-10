@@ -25,7 +25,8 @@ public class Product {
             Brand brand,
             Producer producer,
             Barcode barcode,
-            Price price, Size size,
+            Price price,
+            Size size,
             String imagePath
     ) {
         this.productID = productID;

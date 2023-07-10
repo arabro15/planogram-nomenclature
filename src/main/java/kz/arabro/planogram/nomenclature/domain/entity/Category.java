@@ -7,7 +7,6 @@ public class Category {
     private final CategoryID id;
     private Name name;
     private Color color;
-
     private CategoryID parentID;
 
     Category(CategoryID id, Name name, Color color, CategoryID parentID) {

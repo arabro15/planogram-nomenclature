@@ -1,1 +1,24 @@
+spring:
+  application:
+    name: planogram-nomenclature
+  main:
+    banner-mode: off
+  datasource:
+    dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
+    username: local_user_planogram
+    password: yyq7UFmRn9pz
+    maximumPoolSize: 30
+    minimumIdle: 5
+    dataSourceProperties:
+      serverName: localhost
+      portNumber: 5437
+      databaseName: local_db_planogram
+    jpa:
+      hibernate:
+        ddl-auto: none
+    flyway:
+      enabled: true
+      locations: "classpath:db/migration"
 
+server:
+  port: 8091
