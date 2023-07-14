@@ -1,7 +1,5 @@
 package kz.arabro.planogram.nomenclature.domain.entity;
 
-import java.util.UUID;
-
 public class Producer {
 
     private final ProducerID id;

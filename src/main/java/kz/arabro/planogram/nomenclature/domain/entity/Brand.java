@@ -1,7 +1,5 @@
 package kz.arabro.planogram.nomenclature.domain.entity;
 
-import java.util.UUID;
-
 public class Brand {
 
     private final BrandID id;

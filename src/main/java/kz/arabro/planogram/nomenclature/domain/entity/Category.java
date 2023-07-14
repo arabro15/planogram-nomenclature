@@ -1,7 +1,6 @@
 package kz.arabro.planogram.nomenclature.domain.entity;
 
 import java.util.Optional;
-import java.util.UUID;
 
 public class Category {
     private final CategoryID id;

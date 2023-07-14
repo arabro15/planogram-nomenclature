@@ -1,5 +1,6 @@
 package kz.arabro.planogram.nomenclature.domain.usecase;
 
+import jakarta.annotation.Nullable;
 import kz.arabro.planogram.nomenclature.boundary.model.BrandCreateInfo;
 import kz.arabro.planogram.nomenclature.boundary.repository.BrandRepository;
 import kz.arabro.planogram.nomenclature.boundary.usecase.BrandCreatorUseCase;
@@ -7,7 +8,9 @@ import kz.arabro.planogram.nomenclature.domain.entity.Brand;
 import kz.arabro.planogram.nomenclature.domain.entity.BrandBuilder;
 import kz.arabro.planogram.nomenclature.domain.entity.BrandID;
 import kz.arabro.planogram.nomenclature.domain.entity.Name;
+import org.springframework.stereotype.Service;
 
+@Service
 public class BrandCreatorUseCaseImpl implements BrandCreatorUseCase {
 
     private final BrandRepository brandRepository;
@@ -17,7 +20,7 @@ public class BrandCreatorUseCaseImpl implements BrandCreatorUseCase {
     }
 
     @Override
-    public Brand execute(BrandCreateInfo info) {
+    public Brand execute(@Nullable BrandCreateInfo info) {
         if (info == null) {
             throw UseCaseError.errBrandCreateInfoIsRequired();
         }

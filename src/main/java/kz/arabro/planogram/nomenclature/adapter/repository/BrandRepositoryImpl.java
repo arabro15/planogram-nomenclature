@@ -5,10 +5,13 @@ import kz.arabro.planogram.nomenclature.adapter.repository.jpa.BrandDao;
 import kz.arabro.planogram.nomenclature.boundary.repository.BrandRepository;
 import kz.arabro.planogram.nomenclature.domain.entity.Brand;
 import kz.arabro.planogram.nomenclature.domain.entity.BrandID;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class BrandRepositoryImpl implements BrandRepository {
 
     private final BrandDao brandDao;
@@ -17,6 +20,7 @@ public class BrandRepositoryImpl implements BrandRepository {
         this.brandDao = brandDao;
     }
 
+    @Transactional
     @Override
     public void save(Brand brand) {
         if (brand == null) {
@@ -27,6 +31,7 @@ public class BrandRepositoryImpl implements BrandRepository {
         brandDao.save(brandDbModel);
     }
 
+    @Transactional
     @Override
     public void deleteById(BrandID brandID) {
         if (brandID == null) {
@@ -35,11 +40,13 @@ public class BrandRepositoryImpl implements BrandRepository {
         brandDao.deleteById(brandID.getValue());
     }
 
+    @Transactional
     @Override
     public void update(Brand brand) {
         save(brand);
     }
 
+    @Transactional
     @Override
     public Optional<Brand> findByID(BrandID brandID) {
         if (brandID == null) {
@@ -50,6 +57,7 @@ public class BrandRepositoryImpl implements BrandRepository {
                 map(BrandConverter::toEntity);
     }
 
+    @Transactional
     @Override
     public List<Brand> findAll() {
         var brandDbModels = brandDao.findAll();
