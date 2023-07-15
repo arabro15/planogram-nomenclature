@@ -12,6 +12,10 @@ public class ControllerError {
     private static final String PRODUCER_NAME_IS_REQUIRED = "05e416d3-006";
     private static final String PRODUCER_IS_NULL = "05e416d3-007";
     private static final String PRODUCERS_IS_NULL = "05e416d3-008";
+    private static final String CATEGORY_REQUEST_IS_REQUIRED = "05e416d3-009";
+    private static final String CATEGORY_REQUEST_NULL_IS_REQUIRED = "05e416d3-010";
+    private static final String CATEGORY_IS_NULL = "05e416d3-011";
+    private static final String CATEGORIES_IS_NULL = "05e416d3-012";
 
     private ControllerError() {}
 
@@ -53,5 +57,25 @@ public class ControllerError {
     public static CodedException errProducersIsNull() {
         var errMsg = "Brands is null";
         return new CodedException(PRODUCERS_IS_NULL, errMsg);
+    }
+
+    public static CodedException errCategoryRequestIsRequired() {
+        var errMsg = "request is required";
+        return new CodedException(CATEGORY_REQUEST_IS_REQUIRED , errMsg);
+    }
+
+    public static CodedException errCategoryRequestNullIsRequired() {
+        var errMsg = "request null is required";
+        return new CodedException(CATEGORY_REQUEST_NULL_IS_REQUIRED, errMsg);
+    }
+
+    public static CodedException errCategoryIsNull() {
+        var errMsg = "Category is null";
+        return new CodedException(CATEGORY_IS_NULL, errMsg);
+    }
+
+    public static CodedException errCategoriesIsNull() {
+        var errMsg = "Categories is null";
+        return new CodedException(CATEGORIES_IS_NULL, errMsg);
     }
 }

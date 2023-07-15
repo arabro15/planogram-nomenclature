@@ -48,7 +48,7 @@ public class BrandController {
         var brand = brandCreatorUseCase.execute(info);
 
         var response = new CreateBrandResponse();
-        response.setBrandID(brand.getId().toString());
+        response.setBrandID(brand.getId().getValue().toString());
         return response;
     }
 
