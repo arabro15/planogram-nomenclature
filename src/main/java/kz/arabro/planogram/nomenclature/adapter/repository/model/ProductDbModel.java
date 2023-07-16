@@ -19,6 +19,9 @@ public class ProductDbModel {
     @Column(name = "id")
     private UUID id;
 
+    @Column(name = "code1C")
+    private String code1C;
+
     @Column(name = "rusName", nullable = false)
     private String rusName;
 

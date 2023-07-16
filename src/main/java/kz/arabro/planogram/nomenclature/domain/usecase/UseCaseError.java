@@ -3,6 +3,7 @@ package kz.arabro.planogram.nomenclature.domain.usecase;
 import kz.arabro.planogram.nomenclature.domain.entity.BrandID;
 import kz.arabro.planogram.nomenclature.domain.entity.CategoryID;
 import kz.arabro.planogram.nomenclature.domain.entity.ProducerID;
+import kz.arabro.planogram.nomenclature.domain.entity.ProductID;
 import kz.arabro.planogram.nomenclature.domain.exception.CodedException;
 
 public class UseCaseError {
@@ -17,6 +18,12 @@ public class UseCaseError {
     private static final String CATEGORY_IS_NOT_FOUND = "d281cc0a-009";
     private static final String CATEGORY_ID_IS_REQUIRED = "d281cc0a-010";
     private static final String CATEGORY_PARENT_ID_IS_REQUIRED = "d281cc0a-011";
+    private static final String PRODUCT_CREATE_INFO_IS_REQUIRED = "d281cc0a-012";
+    private static final String PRODUCT_ID_IS_REQUIRED = "d281cc0a-013";
+    private static final String PRODUCT_EDIT_INFO_IS_REQUIRED = "d281cc0a-014";
+    private static final String PRODUCT_IS_NOT_FOUND = "d281cc0a-015";
+    private static final String PRODUCT_BY_CODE_1C_IS_NOT_FOUND = "d281cc0a-016";
+    private static final String PRODUCER_ID_IS_REQUIRED = "d281cc0a-017";
 
     public static CodedException errBrandCreateInfoIsRequired() {
         var errMsg = "Value to create BrandCreateInfo is required";
@@ -59,7 +66,7 @@ public class UseCaseError {
     }
 
     public static CodedException errCategoryNotFound(CategoryID categoryID) {
-        var errMsg = String.format("Producer is not found by ID: %s", categoryID.getValue().toString());
+        var errMsg = String.format("Category is not found by ID: %s", categoryID.getValue().toString());
         return new CodedException(CATEGORY_IS_NOT_FOUND, errMsg);
     }
 
@@ -71,5 +78,35 @@ public class UseCaseError {
     public static CodedException errCategoryParentIdIsRequired() {
         var errMsg = "Value to create Category parentID is required";
         return new CodedException(CATEGORY_PARENT_ID_IS_REQUIRED, errMsg);
+    }
+
+    public static CodedException errProductCreateInfoIsRequired() {
+        var errMsg = "Value to create ProductCreateInfo is required";
+        return new CodedException(PRODUCT_CREATE_INFO_IS_REQUIRED, errMsg);
+    }
+
+    public static CodedException errProductIDIsRequired() {
+        var errMsg = "Value to create ProductID is required";
+        return new CodedException(PRODUCT_ID_IS_REQUIRED, errMsg);
+    }
+
+    public static CodedException errProductEditInfoIsRequired() {
+        var errMsg = "Value to create ProductEditInfo is required";
+        return new CodedException(PRODUCT_EDIT_INFO_IS_REQUIRED, errMsg);
+    }
+
+    public static CodedException errProductNotFound(ProductID productID) {
+        var errMsg = String.format("Product is not found by ID: %s", productID.getValue().toString());
+        return new CodedException(PRODUCT_IS_NOT_FOUND, errMsg);
+    }
+
+    public static CodedException errProductByCode1CNotFound(String code1C) {
+        var errMsg = String.format("Product is not found by Code1C: %s", code1C);
+        return new CodedException(PRODUCT_BY_CODE_1C_IS_NOT_FOUND, errMsg);
+    }
+
+    public static CodedException errProducerIDIsRequired() {
+        var errMsg = "Value to create ProducerID is required";
+        return new CodedException(PRODUCER_ID_IS_REQUIRED, errMsg);
     }
 }

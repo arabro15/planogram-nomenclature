@@ -20,6 +20,12 @@ public class RepositoryError {
     private static final String CATEGORIES_IS_REQUIRED = "3fc0da0a-014";
     private static final String CATEGORY_ID_IS_REQUIRED = "3fc0da0a-015";
     private static final String CATEGORY_PARENT_ID_IS_REQUIRED = "3fc0da0a-016";
+    private static final String PRODUCT_IS_REQUIRED = "3fc0da0a-017";
+    private static final String PRODUCT_DB_MODEL_IS_REQUIRED = "3fc0da0a-018";
+    private static final String PRODUCT_DB_MODELS_IS_REQUIRED = "3fc0da0a-018";
+    private static final String PRODUCTS_IS_REQUIRED = "3fc0da0a-019";
+    private static final String PRODUCT_ID_IS_REQUIRED = "3fc0da0a-020";
+    private static final String PRODUCT_CODE_1C_IS_REQUIRED = "3fc0da0a-021";
 
     private RepositoryError() {}
 
@@ -101,5 +107,35 @@ public class RepositoryError {
     public static CodedException errCategoryParentIdIsRequired() {
         var errMsg = "Value to create Category parentID is required";
         return new CodedException(CATEGORY_PARENT_ID_IS_REQUIRED, errMsg);
+    }
+
+    public static CodedException errProductIsRequired() {
+        var errMsg = "Value to create Product is required";
+        return new CodedException(PRODUCT_IS_REQUIRED, errMsg);
+    }
+
+    public static CodedException errProductDbModelIsRequired() {
+        var errMsg = "Value to create ProductDbModel is required";
+        return new CodedException(PRODUCT_DB_MODEL_IS_REQUIRED, errMsg);
+    }
+
+    public static CodedException errProductDbModelsIsRequired() {
+        var errMsg = "Value to create ProductDbModels is required";
+        return new CodedException(PRODUCT_DB_MODELS_IS_REQUIRED, errMsg);
+    }
+
+    public static CodedException errProductsIsRequired() {
+        var errMsg = "Value to create Products is required";
+        return new CodedException(PRODUCTS_IS_REQUIRED, errMsg);
+    }
+
+    public static CodedException errProductIdIsRequired() {
+        var errMsg = "Value to create ProductID is required";
+        return new CodedException(PRODUCT_ID_IS_REQUIRED, errMsg);
+    }
+
+    public static CodedException errProductCode1CIsRequired() {
+        var errMsg = "Value to create Product Code1C is required";
+        return new CodedException(PRODUCT_CODE_1C_IS_REQUIRED, errMsg);
     }
 }

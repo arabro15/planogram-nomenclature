@@ -1,9 +1,9 @@
 package kz.arabro.planogram.nomenclature.adapter.controller;
 
 import kz.arabro.planogram.nomenclature.adapter.controller.converter.CategoryRequestConverter;
-import kz.arabro.planogram.nomenclature.adapter.controller.converter.CategoryResponse;
 import kz.arabro.planogram.nomenclature.adapter.controller.converter.CategoryResponseConverter;
 import kz.arabro.planogram.nomenclature.adapter.controller.request.*;
+import kz.arabro.planogram.nomenclature.adapter.controller.response.CategoryResponse;
 import kz.arabro.planogram.nomenclature.adapter.controller.response.CreateCategoryResponse;
 import kz.arabro.planogram.nomenclature.adapter.controller.response.EditCategoryResponse;
 import kz.arabro.planogram.nomenclature.boundary.usecase.CategoryCreatorUseCase;
@@ -83,7 +83,7 @@ public class CategoryController {
     }
 
     @PostMapping(path = "/get-categories-by-parent-id")
-    public List<CategoryResponse> getCategoriesByParentID(@RequestBody GetCategoryByParentIDRequest request) {
+    public List<CategoryResponse> getCategoriesByParentID(@RequestBody GetCategoriesByParentIDRequest request) {
         var categories = categoryReadDataUseCase.findAllByParentID(request.getParentID());
         return CategoryResponseConverter.categoriesToResponses(categories);
     }

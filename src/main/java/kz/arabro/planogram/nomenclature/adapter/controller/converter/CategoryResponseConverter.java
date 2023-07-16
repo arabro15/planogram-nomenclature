@@ -1,6 +1,7 @@
 package kz.arabro.planogram.nomenclature.adapter.controller.converter;
 
 import kz.arabro.planogram.nomenclature.adapter.controller.ControllerError;
+import kz.arabro.planogram.nomenclature.adapter.controller.response.CategoryResponse;
 import kz.arabro.planogram.nomenclature.domain.entity.Category;
 
 import java.util.List;

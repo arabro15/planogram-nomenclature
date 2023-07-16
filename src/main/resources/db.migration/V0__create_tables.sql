@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS public.producer
 CREATE TABLE IF NOT EXISTS public.product
 (
     id        uuid PRIMARY KEY,
+    code1C    text NOT NULL,
     rusName   text NOT NULL,
     kazName   text NOT NULL,
     category  text NOT NULL,
