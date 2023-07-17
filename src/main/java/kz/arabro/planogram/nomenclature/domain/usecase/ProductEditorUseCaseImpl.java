@@ -17,7 +17,10 @@ public class ProductEditorUseCaseImpl implements ProductEditorUseCase {
     private final BrandRepository brandRepository;
     private final ProducerRepository producerRepository;
 
-    public ProductEditorUseCaseImpl(ProductRepository productRepository, CategoryRepository categoryRepository, BrandRepository brandRepository, ProducerRepository producerRepository) {
+    public ProductEditorUseCaseImpl(ProductRepository productRepository,
+                                    CategoryRepository categoryRepository,
+                                    BrandRepository brandRepository,
+                                    ProducerRepository producerRepository) {
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
         this.brandRepository = brandRepository;
@@ -30,29 +33,27 @@ public class ProductEditorUseCaseImpl implements ProductEditorUseCase {
             throw UseCaseError.errProductEditInfoIsRequired();
         }
 
-        var productID = ProductID.from(info.getId());
-        var code1C = info.getCode1C();
-        var rusName = Name.of(info.getRusName());
-        var kazName = Name.of(info.getKazName());
-
         var categoryOpt = categoryRepository.findByID(CategoryID.from(info.getCategory()));
         var brandOpt = brandRepository.findByID(BrandID.from(info.getBrand()));
         var producerOpt = producerRepository.findByID(ProducerID.from(info.getProducer()));
 
-        Category category = null;
-        Brand brand = null;
-        Producer producer = null;
-
-        if (categoryOpt.isPresent()) {
-            category = categoryOpt.get();
+        if (categoryOpt.isEmpty()) {
+            throw UseCaseError.errCategoryNotFound(CategoryID.from(info.getCategory()));
         }
-        if (brandOpt.isPresent()) {
-            brand = brandOpt.get();
+        if (brandOpt.isEmpty()) {
+            throw UseCaseError.errBrandNotFound(BrandID.from(info.getBrand()));
         }
-        if (producerOpt.isPresent()) {
-            producer = producerOpt.get();
+        if (producerOpt.isEmpty()) {
+            throw UseCaseError.errProducerNotFound(ProducerID.from(info.getProducer()));
         }
 
+        var productID = ProductID.from(info.getId());
+        var code1C = info.getCode1C();
+        var rusName = Name.of(info.getRusName());
+        var kazName = Name.of(info.getKazName());
+        var category = categoryOpt.get();
+        var brand = brandOpt.get();
+        var producer = producerOpt.get();
         var barcode = Barcode.of(info.getBarcode());
         var price = Price.of(info.getPrice());
         var height = Integer.parseInt(info.getHeight());

@@ -1,9 +1,6 @@
 package kz.arabro.planogram.nomenclature.adapter.repository.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,23 +16,26 @@ public class ProductDbModel {
     @Column(name = "id")
     private UUID id;
 
-    @Column(name = "code1C")
+    @Column(name = "code1c")
     private String code1C;
 
-    @Column(name = "rusName", nullable = false)
+    @Column(name = "rus_name", nullable = false)
     private String rusName;
 
-    @Column(name = "kazName", nullable = false)
+    @Column(name = "kaz_name", nullable = false)
     private String kazName;
 
-    @Column(name = "category", nullable = false)
-    private String category;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private CategoryDbModel category;
 
-    @Column(name = "brand", nullable = false)
-    private String brand;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "brand_id", referencedColumnName = "id")
+    private BrandDbModel brand;
 
-    @Column(name = "producer", nullable = false)
-    private String producer;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "producer_id", referencedColumnName = "id")
+    private ProducerDbModel producer;
 
     @Column(name = "barcode", nullable = false)
     private String barcode;
@@ -52,7 +52,7 @@ public class ProductDbModel {
     @Column(name = "length", nullable = false)
     private String length;
 
-    @Column(name = "imagePath", nullable = false)
+    @Column(name = "image_path", nullable = false)
     private String imagePath;
 
 }

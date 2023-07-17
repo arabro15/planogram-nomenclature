@@ -13,7 +13,7 @@ public class BrandResponseConverter {
             throw ControllerError.errBrandIsNull();
         }
 
-        var brandID = brand.getId().toString();
+        var brandID = brand.getId().getValue().toString();
         var name = brand.getName().getValue();
 
         var brandResponse = new BrandResponse();

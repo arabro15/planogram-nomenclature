@@ -18,15 +18,9 @@ public class ProductConverter {
         var rusName = Name.of(productDbModel.getRusName());
         var kazName = Name.of(productDbModel.getKazName());
 
-        var category = new CategoryBuilder().
-                setID(CategoryID.from(productDbModel.getCategory())).
-                build();
-        var brand = new BrandBuilder().
-                setID(BrandID.from(productDbModel.getBrand())).
-                build();
-        var producer = new ProducerBuilder().
-                setId(ProducerID.from(productDbModel.getProducer())).
-                build();
+        var category = CategoryConverter.toEntity(productDbModel.getCategory());
+        var brand = BrandConverter.toEntity(productDbModel.getBrand());
+        var producer = ProducerConverter.toEntity(productDbModel.getProducer());
 
         var barcode = Barcode.of(productDbModel.getBarcode());
         var price = Price.of(productDbModel.getPrice());
@@ -72,9 +66,9 @@ public class ProductConverter {
         var code1C = product.getCode1C();
         var rusName = product.getRusName().getValue();
         var kazName = product.getKazName().getValue();
-        var categoryID = product.getCategory().getId().getValue().toString();
-        var brandID = product.getBrand().getId().getValue().toString();
-        var producerID = product.getProducer().getId().getValue().toString();
+        var category = CategoryConverter.toModel(product.getCategory());
+        var brand = BrandConverter.toModel(product.getBrand());
+        var producerID = ProducerConverter.toModel(product.getProducer());
         var barcode = product.getBarcode().getValue();
         var price = product.getPrice().getPrice();
         var height = String.valueOf(product.getSize().getHeight());
@@ -87,8 +81,8 @@ public class ProductConverter {
         productDbModel.setCode1C(code1C);
         productDbModel.setRusName(rusName);
         productDbModel.setKazName(kazName);
-        productDbModel.setCategory(categoryID);
-        productDbModel.setBrand(brandID);
+        productDbModel.setCategory(category);
+        productDbModel.setBrand(brand);
         productDbModel.setProducer(producerID);
         productDbModel.setBarcode(barcode);
         productDbModel.setPrice(price);

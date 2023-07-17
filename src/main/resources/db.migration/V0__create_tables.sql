@@ -20,17 +20,17 @@ CREATE TABLE IF NOT EXISTS public.producer
 
 CREATE TABLE IF NOT EXISTS public.product
 (
-    id        uuid PRIMARY KEY,
-    code1C    text NOT NULL,
-    rusName   text NOT NULL,
-    kazName   text NOT NULL,
-    category  text NOT NULL,
-    brand     text NOT NULL,
-    producer  text NOT NULL,
-    barcode   text NOT NULL,
-    price     text NOT NULL,
-    height    text NOT NULL,
-    weight    text NOT NULL,
-    length    text NOT NULL,
-    imagePath text NOT NULL
+    id          uuid PRIMARY KEY,
+    code1c      text NOT NULL,
+    rus_name    text NOT NULL,
+    kaz_name    text NOT NULL,
+    category_id uuid NOT NULL,
+    brand_id    uuid NOT NULL,
+    producer_id uuid NOT NULL,
+    barcode     text NOT NULL,
+    price       text NOT NULL,
+    height      text NOT NULL,
+    weight      text NOT NULL,
+    length      text NOT NULL,
+    image_path  text NOT NULL
 );

@@ -13,7 +13,7 @@ public class ProducerResponseConverter {
             throw ControllerError.errProducerIsNull();
         }
 
-        var producerID = producer.getId().toString();
+        var producerID = producer.getId().getValue().toString();
         var name = producer.getName().getValue();
 
         var producerResponse = new ProducerResponse();

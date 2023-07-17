@@ -1,6 +1,9 @@
 package kz.arabro.planogram.nomenclature.adapter.repository;
 
 import kz.arabro.planogram.nomenclature.adapter.repository.converter.ProductConverter;
+import kz.arabro.planogram.nomenclature.adapter.repository.jpa.BrandDao;
+import kz.arabro.planogram.nomenclature.adapter.repository.jpa.CategoryDao;
+import kz.arabro.planogram.nomenclature.adapter.repository.jpa.ProducerDao;
 import kz.arabro.planogram.nomenclature.adapter.repository.jpa.ProductDao;
 import kz.arabro.planogram.nomenclature.boundary.repository.ProductRepository;
 import kz.arabro.planogram.nomenclature.domain.entity.*;
@@ -14,9 +17,18 @@ import java.util.Optional;
 public class ProductRepositoryImpl implements ProductRepository {
 
     private final ProductDao productDao;
+    private final ProducerDao producerDao;
+    private final CategoryDao categoryDao;
+    private final BrandDao brandDao;
 
-    public ProductRepositoryImpl(ProductDao productDao) {
+    public ProductRepositoryImpl(ProductDao productDao,
+                                 ProducerDao producerDao,
+                                 CategoryDao categoryDao,
+                                 BrandDao brandDao) {
         this.productDao = productDao;
+        this.producerDao = producerDao;
+        this.categoryDao = categoryDao;
+        this.brandDao = brandDao;
     }
 
     @Transactional
@@ -28,7 +40,6 @@ public class ProductRepositoryImpl implements ProductRepository {
 
         var productDbModel = ProductConverter.toModel(product);
         productDao.save(productDbModel);
-
     }
 
     @Transactional
@@ -81,7 +92,13 @@ public class ProductRepositoryImpl implements ProductRepository {
             throw RepositoryError.errProducerIdIsRequired();
         }
 
-        var productDbModels = productDao.findAllByProducer(producerID.getValue().toString());
+        var producerDbModel = producerDao.findById(producerID.getValue());
+
+        if (producerDbModel.isEmpty()) {
+            throw RepositoryError.errProducerDbModelIsRequired();
+        }
+
+        var productDbModels = productDao.findAllByProducer(producerDbModel.get());
         return ProductConverter.toEntities(productDbModels);
     }
 
@@ -92,7 +109,13 @@ public class ProductRepositoryImpl implements ProductRepository {
             throw RepositoryError.errCategoryIdIsRequired();
         }
 
-        var productDbModels = productDao.findAllByCategory(categoryID.getValue().toString());
+        var categoryDbModel = categoryDao.findById(categoryID.getValue());
+
+        if (categoryDbModel.isEmpty()) {
+            throw RepositoryError.errCategoryDbModelIsRequired();
+        }
+
+        var productDbModels = productDao.findAllByCategory(categoryDbModel.get());
         return ProductConverter.toEntities(productDbModels);
     }
 
@@ -103,7 +126,13 @@ public class ProductRepositoryImpl implements ProductRepository {
             throw RepositoryError.errBrandIdIsRequired();
         }
 
-        var productDbModels = productDao.findAllByBrand(brandID.getValue().toString());
+        var brandDbModel = brandDao.findById(brandID.getValue());
+
+        if (brandDbModel.isEmpty()) {
+            throw RepositoryError.errBrandDbModelIsRequired();
+        }
+
+        var productDbModels = productDao.findAllByBrand(brandDbModel.get());
         return ProductConverter.toEntities(productDbModels);
     }
 

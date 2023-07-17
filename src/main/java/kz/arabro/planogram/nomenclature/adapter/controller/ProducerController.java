@@ -48,7 +48,7 @@ public class ProducerController {
         var producer = producerCreatorUseCase.execute(info);
 
         var response = new CreateProducerResponse();
-        response.setProducerID(producer.getId().toString());
+        response.setProducerID(producer.getId().getValue().toString());
         return response;
     }
 
