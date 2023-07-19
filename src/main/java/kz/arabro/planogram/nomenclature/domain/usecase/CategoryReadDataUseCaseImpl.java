@@ -29,6 +29,8 @@ public class CategoryReadDataUseCaseImpl implements CategoryReadDataUseCase {
                 orElseThrow(() -> UseCaseError.errCategoryNotFound(categoryID));
     }
 
+    //CR: All можно убрать из названия метода
+    // Тут же не все категории возвращаются
     @Override
     public List<Category> findAllByParentID(String parentIDStr) {
         if (parentIDStr == null) {

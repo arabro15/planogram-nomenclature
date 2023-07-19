@@ -10,6 +10,9 @@ import kz.arabro.planogram.nomenclature.domain.entity.BrandID;
 import kz.arabro.planogram.nomenclature.domain.entity.Name;
 import org.springframework.stereotype.Service;
 
+// CR: Данный класс можно назвать глаголом.
+// UseCase чем-то напоминает паттерн Команда.
+// Поэтому предлагаю переименовать в CreateBrandUseCase
 @Service
 public class BrandCreatorUseCaseImpl implements BrandCreatorUseCase {
 

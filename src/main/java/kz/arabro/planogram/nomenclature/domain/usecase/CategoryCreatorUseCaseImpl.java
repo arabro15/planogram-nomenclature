@@ -6,6 +6,9 @@ import kz.arabro.planogram.nomenclature.boundary.usecase.CategoryCreatorUseCase;
 import kz.arabro.planogram.nomenclature.domain.entity.*;
 import org.springframework.stereotype.Service;
 
+// CR: Данный класс можно назвать глаголом.
+// UseCase чем-то напоминает паттерн Команда.
+// Поэтому предлагаю переименовать в CreateCategoryUseCase
 @Service
 public class CategoryCreatorUseCaseImpl implements CategoryCreatorUseCase {
 

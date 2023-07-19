@@ -6,6 +6,8 @@ import kz.arabro.planogram.nomenclature.boundary.usecase.BrandDeleteUseCase;
 import kz.arabro.planogram.nomenclature.domain.entity.BrandID;
 import org.springframework.stereotype.Service;
 
+// CR: Правильно будет DeleteBrandUseCase.
+// Сначала идет глагол, а потом объект действия
 @Service
 public class BrandDeleteUseCaseImpl implements BrandDeleteUseCase {
 

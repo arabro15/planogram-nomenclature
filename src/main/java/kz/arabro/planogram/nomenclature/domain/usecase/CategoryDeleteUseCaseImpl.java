@@ -5,6 +5,9 @@ import kz.arabro.planogram.nomenclature.boundary.usecase.CategoryDeleteUseCase;
 import kz.arabro.planogram.nomenclature.domain.entity.CategoryID;
 import org.springframework.stereotype.Service;
 
+// CR: Данный класс можно назвать глаголом.
+// UseCase чем-то напоминает паттерн Команда.
+// Поэтому предлагаю переименовать в DeleteCategoryUseCase
 @Service
 public class CategoryDeleteUseCaseImpl implements CategoryDeleteUseCase {
 
@@ -20,10 +23,15 @@ public class CategoryDeleteUseCaseImpl implements CategoryDeleteUseCase {
             throw UseCaseError.errCategoryIdIsRequired();
         }
 
+        //CR: на мой взгляд, CategoryID.from(categoryID) лучше вынести в отдельную переменную.
+        // Так код будет более читабельный
         categoryRepository.deleteById(CategoryID.from(categoryID));
 
     }
 
+    //CR: У категории может быть несколько дочерних категорий?
+    // Если так, то тут могут быть удалены несколько категорий.
+    // Это противоречит названию метода. Возможно стоит назвать deleteCategoriesByParentID
     @Override
     public void deleteCategoryByParentID(String parentID) {
         if (parentID == null) {

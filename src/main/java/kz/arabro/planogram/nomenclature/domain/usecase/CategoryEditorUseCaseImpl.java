@@ -10,6 +10,9 @@ import kz.arabro.planogram.nomenclature.domain.entity.Color;
 import kz.arabro.planogram.nomenclature.domain.entity.Name;
 import org.springframework.stereotype.Service;
 
+// CR: Данный класс можно назвать глаголом.
+// UseCase чем-то напоминает паттерн Команда.
+// Поэтому предлагаю переименовать в UpdateCategoryUseCase
 @Service
 public class CategoryEditorUseCaseImpl implements CategoryEditorUseCase {
 
@@ -19,7 +22,10 @@ public class CategoryEditorUseCaseImpl implements CategoryEditorUseCase {
         this.categoryRepository = categoryRepository;
     }
 
-
+    // CR: Не понял, что делает данный UseCase. Он создает или обновляет?
+    // Если обновляет, то почему создается новый Category?
+    // Почему не достается Category из репозитория для обновления?
+    // Пока, я вижу, что у Category можно заменить ID, а это очень странно
     @Override
     public void update(@Nullable CategoryEditInfo categoryEditInfo) {
         if (categoryEditInfo == null) {
