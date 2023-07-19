@@ -6,6 +6,10 @@ public class CategoryBuilder {
     private Color color;
     private CategoryID parentID;
 
+    // CR: пустой конструктор также используется как конструктор по умолчанию.
+    // Его нет необходимости указывать в классе, он неявно присутствует.
+    // Его есть необходимость указать, только если присутствует какой-либо другой конструктор.
+    // Предлагаю его убрать
     public CategoryBuilder() {}
 
     public CategoryBuilder setID(CategoryID id) {

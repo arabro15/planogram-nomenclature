@@ -3,6 +3,9 @@ package kz.arabro.planogram.nomenclature.domain.entity;
 import kz.arabro.planogram.nomenclature.domain.exception.CodedException;
 
 public final class ProductError {
+
+    //CR: Коды ошибок предлагаю сделать публичными, так как тебе они пригодятся в тестах.
+    // Ну и никакой проблемы не будет втом, что они будут доступны во внешних классах
     private static final String PRODUCT_ID_VALUE_IS_REQUIRED = "b2b54f6d-001";
     private static final String ILLEGAL_PRODUCT_ID_VALUE = "b2b54f6d-002";
     private static final String EMPTY_NAME_VALUE = "b2b54f6d-003";

@@ -5,6 +5,10 @@ public class ProducerBuilder {
     private ProducerID id;
     private Name name;
 
+    // CR: пустой конструктор также используется как конструктор по умолчанию.
+    // Его нет необходимости указывать в классе, он неявно присутствует.
+    // Его есть необходимость указать, только если присутствует какой-либо другой конструктор.
+    // Предлагаю его убрать
     public ProducerBuilder() {
     }
 
@@ -32,5 +36,5 @@ public class ProducerBuilder {
             throw ProducerError.errNullNameProducerValue();
         }
     }
-
+//CR: Пустую строку следует убрать
 }

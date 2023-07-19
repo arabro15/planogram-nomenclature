@@ -4,6 +4,8 @@ import kz.arabro.planogram.nomenclature.domain.exception.CodedException;
 
 public final class BrandError {
 
+    //CR: Коды ошибок предлагаю сделать публичными, так как тебе они пригодятся в тестах.
+    // Ну и никакой проблемы не будет втом, что они будут доступны во внешних классах
     private static final String BRAND_ID_VALUE_IS_REQUIRED = "51901dae-001";
     private static final String ILLEGAL_BRAND_ID_VALUE = "51901dae-002";
     private static final String NULL_ID_BRAND_VALUE = "51901dae-003";

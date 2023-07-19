@@ -3,8 +3,12 @@ package kz.arabro.planogram.nomenclature.domain.entity;
 
 public class Name {
 
+    //CR: зачем данное поле публичное?
     public final String value;
 
+    //CR: Конструктор остался публичным, и это потенциальный источник ошибки.
+    // так как инвариант здесь не проверяется.
+    // В таких классах (object-value) конструктор делают приватным
     public Name(String nameStr) {
         this.value = nameStr;
     }

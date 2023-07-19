@@ -5,6 +5,9 @@ public class Barcode {
 
     private final String value;
 
+    //CR: Конструктор остался публичным, и это потенциальный источник ошибки.
+    // так как инвариант здесь не проверяется.
+    // В таких классах (object-value) конструктор делают приватным
     public Barcode(String value) {
         this.value = value;
     }

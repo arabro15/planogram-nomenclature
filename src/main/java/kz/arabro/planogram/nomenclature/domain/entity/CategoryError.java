@@ -3,6 +3,9 @@ package kz.arabro.planogram.nomenclature.domain.entity;
 import kz.arabro.planogram.nomenclature.domain.exception.CodedException;
 
 public final class CategoryError {
+
+    //CR: Коды ошибок предлагаю сделать публичными, так как тебе они пригодятся в тестах.
+    // Ну и никакой проблемы не будет втом, что они будут доступны во внешних классах
     private static final String CATEGORY_ID_VALUE_IS_REQUIRED = "f83fcc2e-001";
     private static final String ILLEGAL_CATEGORY_ID_VALUE = "f83fcc2e-002";
     private static final String NULL_ID_CATEGORY_VALUE = "f83fcc2e-003";

@@ -3,6 +3,9 @@ package kz.arabro.planogram.nomenclature.domain.entity;
 import kz.arabro.planogram.nomenclature.domain.exception.CodedException;
 
 public final class ProducerError {
+
+    //CR: Коды ошибок предлагаю сделать публичными, так как тебе они пригодятся в тестах.
+    // Ну и никакой проблемы не будет втом, что они будут доступны во внешних классах
     private static final String PRODUCER_ID_VALUE_IS_REQUIRED = "14fe66f6-001";
     private static final String ILLEGAL_PRODUCER_ID_VALUE = "14fe66f6-002";
     private static final String NULL_ID_PRODUCER_VALUE = "14fe66f6-003";

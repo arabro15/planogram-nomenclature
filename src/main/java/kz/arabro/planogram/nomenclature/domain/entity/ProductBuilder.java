@@ -68,6 +68,7 @@ public class ProductBuilder {
         return this;
     }
 
+    //CR: метод в билдере принято называть Build()
     public Product createProduct() {
         checkRequiredFields();
 
@@ -109,6 +110,6 @@ public class ProductBuilder {
             throw ProductError.errNullSizeProductValue();
         }
     }
-
+//CR: пустые строки следует убрать
 
 }
