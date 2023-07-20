@@ -1,6 +1,10 @@
 package kz.arabro.planogram.nomenclature.boundary.repository;
 
-import kz.arabro.planogram.nomenclature.domain.entity.*;
+import kz.arabro.planogram.nomenclature.domain.entity.brand.BrandID;
+import kz.arabro.planogram.nomenclature.domain.entity.category.CategoryID;
+import kz.arabro.planogram.nomenclature.domain.entity.producer.ProducerID;
+import kz.arabro.planogram.nomenclature.domain.entity.product.Product;
+import kz.arabro.planogram.nomenclature.domain.entity.product.ProductID;
 
 import java.util.List;
 import java.util.Optional;

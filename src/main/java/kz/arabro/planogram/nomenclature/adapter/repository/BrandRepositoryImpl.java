@@ -3,8 +3,8 @@ package kz.arabro.planogram.nomenclature.adapter.repository;
 import kz.arabro.planogram.nomenclature.adapter.repository.converter.BrandConverter;
 import kz.arabro.planogram.nomenclature.adapter.repository.jpa.BrandDao;
 import kz.arabro.planogram.nomenclature.boundary.repository.BrandRepository;
-import kz.arabro.planogram.nomenclature.domain.entity.Brand;
-import kz.arabro.planogram.nomenclature.domain.entity.BrandID;
+import kz.arabro.planogram.nomenclature.domain.entity.brand.Brand;
+import kz.arabro.planogram.nomenclature.domain.entity.brand.BrandID;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

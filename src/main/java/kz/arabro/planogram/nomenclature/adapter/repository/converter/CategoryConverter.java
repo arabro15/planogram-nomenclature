@@ -2,7 +2,11 @@ package kz.arabro.planogram.nomenclature.adapter.repository.converter;
 
 import kz.arabro.planogram.nomenclature.adapter.repository.RepositoryError;
 import kz.arabro.planogram.nomenclature.adapter.repository.model.CategoryDbModel;
-import kz.arabro.planogram.nomenclature.domain.entity.*;
+import kz.arabro.planogram.nomenclature.domain.entity.category.Category;
+import kz.arabro.planogram.nomenclature.domain.entity.category.CategoryBuilder;
+import kz.arabro.planogram.nomenclature.domain.entity.category.CategoryID;
+import kz.arabro.planogram.nomenclature.domain.entity.category.Color;
+import kz.arabro.planogram.nomenclature.domain.entity.product.Name;
 
 import java.util.List;
 import java.util.UUID;

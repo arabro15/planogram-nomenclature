@@ -6,7 +6,11 @@ import kz.arabro.planogram.nomenclature.adapter.repository.jpa.CategoryDao;
 import kz.arabro.planogram.nomenclature.adapter.repository.jpa.ProducerDao;
 import kz.arabro.planogram.nomenclature.adapter.repository.jpa.ProductDao;
 import kz.arabro.planogram.nomenclature.boundary.repository.ProductRepository;
-import kz.arabro.planogram.nomenclature.domain.entity.*;
+import kz.arabro.planogram.nomenclature.domain.entity.brand.BrandID;
+import kz.arabro.planogram.nomenclature.domain.entity.category.CategoryID;
+import kz.arabro.planogram.nomenclature.domain.entity.producer.ProducerID;
+import kz.arabro.planogram.nomenclature.domain.entity.product.Product;
+import kz.arabro.planogram.nomenclature.domain.entity.product.ProductID;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

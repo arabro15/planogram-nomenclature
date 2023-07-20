@@ -2,10 +2,10 @@ package kz.arabro.planogram.nomenclature.adapter.repository.converter;
 
 import kz.arabro.planogram.nomenclature.adapter.repository.RepositoryError;
 import kz.arabro.planogram.nomenclature.adapter.repository.model.ProducerDbModel;
-import kz.arabro.planogram.nomenclature.domain.entity.Name;
-import kz.arabro.planogram.nomenclature.domain.entity.Producer;
-import kz.arabro.planogram.nomenclature.domain.entity.ProducerBuilder;
-import kz.arabro.planogram.nomenclature.domain.entity.ProducerID;
+import kz.arabro.planogram.nomenclature.domain.entity.product.Name;
+import kz.arabro.planogram.nomenclature.domain.entity.producer.Producer;
+import kz.arabro.planogram.nomenclature.domain.entity.producer.ProducerBuilder;
+import kz.arabro.planogram.nomenclature.domain.entity.producer.ProducerID;
 
 import java.util.List;
 

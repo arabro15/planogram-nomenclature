@@ -9,10 +9,10 @@ import kz.arabro.planogram.nomenclature.adapter.controller.request.GetBrandByIDR
 import kz.arabro.planogram.nomenclature.adapter.controller.response.BrandResponse;
 import kz.arabro.planogram.nomenclature.adapter.controller.response.CreateBrandResponse;
 import kz.arabro.planogram.nomenclature.adapter.controller.response.EditBrandResponse;
-import kz.arabro.planogram.nomenclature.boundary.usecase.BrandCreatorUseCase;
-import kz.arabro.planogram.nomenclature.boundary.usecase.BrandDeleteUseCase;
-import kz.arabro.planogram.nomenclature.boundary.usecase.BrandEditorUseCase;
-import kz.arabro.planogram.nomenclature.boundary.usecase.BrandReadDataUseCase;
+import kz.arabro.planogram.nomenclature.boundary.usecase.CreateBrandUseCase;
+import kz.arabro.planogram.nomenclature.boundary.usecase.DeleteBrandUseCase;
+import kz.arabro.planogram.nomenclature.boundary.usecase.UpdateBrandUseCase;
+import kz.arabro.planogram.nomenclature.boundary.usecase.ReadDataBrandUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,26 +26,26 @@ import java.util.List;
 @RequestMapping(path = "/api/v1")
 public class BrandController {
 
-    private final BrandCreatorUseCase brandCreatorUseCase;
-    private final BrandDeleteUseCase brandDeleteUseCase;
-    private final BrandEditorUseCase brandEditorUseCase;
-    private final BrandReadDataUseCase brandReadDataUseCase;
+    private final CreateBrandUseCase createBrandUseCase;
+    private final DeleteBrandUseCase deleteBrandUseCase;
+    private final UpdateBrandUseCase updateBrandUseCase;
+    private final ReadDataBrandUseCase readDataBrandUseCase;
 
-    public BrandController(BrandCreatorUseCase brandCreatorUseCase,
-                           BrandDeleteUseCase brandDeleteUseCase,
-                           BrandEditorUseCase brandEditorUseCase,
-                           BrandReadDataUseCase brandReadDataUseCase) {
-        this.brandCreatorUseCase = brandCreatorUseCase;
-        this.brandDeleteUseCase = brandDeleteUseCase;
-        this.brandEditorUseCase = brandEditorUseCase;
-        this.brandReadDataUseCase = brandReadDataUseCase;
+    public BrandController(CreateBrandUseCase createBrandUseCase,
+                           DeleteBrandUseCase deleteBrandUseCase,
+                           UpdateBrandUseCase updateBrandUseCase,
+                           ReadDataBrandUseCase readDataBrandUseCase) {
+        this.createBrandUseCase = createBrandUseCase;
+        this.deleteBrandUseCase = deleteBrandUseCase;
+        this.updateBrandUseCase = updateBrandUseCase;
+        this.readDataBrandUseCase = readDataBrandUseCase;
     }
 
     @PostMapping(path = "/create-brand")
     public CreateBrandResponse createBrand(@RequestBody CreateBrandRequest request) {
         var info = BrandRequestConverter.createBrandRequestToModel(request);
 
-        var brand = brandCreatorUseCase.execute(info);
+        var brand = createBrandUseCase.execute(info);
 
         var response = new CreateBrandResponse();
         response.setBrandID(brand.getId().getValue().toString());
@@ -54,7 +54,7 @@ public class BrandController {
 
     @PostMapping(path = "/delete-by-id-brand")
     public ResponseEntity<Object> deleteBrand(@RequestBody DeleteBrandRequest request) {
-        brandDeleteUseCase.deleteBrandByID(request.getBrandID());
+        deleteBrandUseCase.deleteBrandByID(request.getBrandID());
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
@@ -62,7 +62,7 @@ public class BrandController {
     public EditBrandResponse editBrand(@RequestBody EditBrandRequest request) {
         var brand = BrandRequestConverter.editBrandRequestToModel(request);
 
-        brandEditorUseCase.update(brand);
+        updateBrandUseCase.update(brand);
 
         var response = new EditBrandResponse();
         response.setBrandID(brand.getBrandID());
@@ -73,13 +73,13 @@ public class BrandController {
 
     @PostMapping(path = "/get-brand-by-id")
     public BrandResponse getBrandByID(@RequestBody GetBrandByIDRequest request) {
-        var brand = brandReadDataUseCase.findByID(request.getBrandID());
+        var brand = readDataBrandUseCase.findByID(request.getBrandID());
         return BrandResponseConverter.brandToResponse(brand);
     }
 
     @PostMapping(path = "/get-all-brands")
     public List<BrandResponse> getAllBrands() {
-        var brands = brandReadDataUseCase.findAll();
+        var brands = readDataBrandUseCase.findAll();
         return BrandResponseConverter.brandsToResponses(brands);
     }
 

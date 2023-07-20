@@ -2,7 +2,7 @@ package kz.arabro.planogram.nomenclature.adapter.repository.converter;
 
 import kz.arabro.planogram.nomenclature.adapter.repository.RepositoryError;
 import kz.arabro.planogram.nomenclature.adapter.repository.model.ProductDbModel;
-import kz.arabro.planogram.nomenclature.domain.entity.*;
+import kz.arabro.planogram.nomenclature.domain.entity.product.*;
 
 import java.util.List;
 
@@ -44,7 +44,7 @@ public class ProductConverter {
                 setPrice(price).
                 setSize(size).
                 setImagePath(imagePath).
-                createProduct();
+                build();
     }
 
     public static List<Product> toEntities(List<ProductDbModel> productDbModels) {

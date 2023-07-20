@@ -1,7 +1,7 @@
 package kz.arabro.planogram.nomenclature.boundary.repository;
 
-import kz.arabro.planogram.nomenclature.domain.entity.Producer;
-import kz.arabro.planogram.nomenclature.domain.entity.ProducerID;
+import kz.arabro.planogram.nomenclature.domain.entity.producer.Producer;
+import kz.arabro.planogram.nomenclature.domain.entity.producer.ProducerID;
 
 import java.util.List;
 import java.util.Optional;

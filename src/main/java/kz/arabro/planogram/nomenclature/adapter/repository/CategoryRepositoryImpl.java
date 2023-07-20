@@ -3,8 +3,8 @@ package kz.arabro.planogram.nomenclature.adapter.repository;
 import kz.arabro.planogram.nomenclature.adapter.repository.converter.CategoryConverter;
 import kz.arabro.planogram.nomenclature.adapter.repository.jpa.CategoryDao;
 import kz.arabro.planogram.nomenclature.boundary.repository.CategoryRepository;
-import kz.arabro.planogram.nomenclature.domain.entity.Category;
-import kz.arabro.planogram.nomenclature.domain.entity.CategoryID;
+import kz.arabro.planogram.nomenclature.domain.entity.category.Category;
+import kz.arabro.planogram.nomenclature.domain.entity.category.CategoryID;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
