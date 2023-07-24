@@ -36,5 +36,4 @@ public class ProducerBuilder {
             throw ProducerError.errNullNameProducerValue();
         }
     }
-//CR: Пустую строку следует убрать
 }

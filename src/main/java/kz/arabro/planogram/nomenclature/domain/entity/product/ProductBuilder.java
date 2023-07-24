@@ -92,6 +92,9 @@ public class ProductBuilder {
     }
 
     private void checkRequiredFields() {
+        if (productID == null) {
+            throw ProductError.errNullProductIDValue();
+        }
         if (code1C == null) {
             throw ProductError.errNullCode1CProductValue();
         }
@@ -114,6 +117,4 @@ public class ProductBuilder {
             throw ProductError.errNullSizeProductValue();
         }
     }
-//CR: пустые строки следует убрать
-
 }

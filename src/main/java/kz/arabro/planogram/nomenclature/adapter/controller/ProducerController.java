@@ -11,8 +11,8 @@ import kz.arabro.planogram.nomenclature.adapter.controller.response.EditProducer
 import kz.arabro.planogram.nomenclature.adapter.controller.response.ProducerResponse;
 import kz.arabro.planogram.nomenclature.boundary.usecase.CreateProducerUseCase;
 import kz.arabro.planogram.nomenclature.boundary.usecase.DeleteProducerUseCase;
-import kz.arabro.planogram.nomenclature.boundary.usecase.UpdateProducerUseCase;
 import kz.arabro.planogram.nomenclature.boundary.usecase.ReadDataProducerUseCase;
+import kz.arabro.planogram.nomenclature.boundary.usecase.UpdateProducerUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

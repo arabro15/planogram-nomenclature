@@ -8,8 +8,8 @@ import kz.arabro.planogram.nomenclature.adapter.controller.response.EditProductR
 import kz.arabro.planogram.nomenclature.adapter.controller.response.ProductResponse;
 import kz.arabro.planogram.nomenclature.boundary.usecase.CreateProductUseCase;
 import kz.arabro.planogram.nomenclature.boundary.usecase.DeleteProductUseCase;
-import kz.arabro.planogram.nomenclature.boundary.usecase.UpdateProductUseCase;
 import kz.arabro.planogram.nomenclature.boundary.usecase.ReadDataProductUseCase;
+import kz.arabro.planogram.nomenclature.boundary.usecase.UpdateProductUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

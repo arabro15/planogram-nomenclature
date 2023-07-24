@@ -19,9 +19,13 @@ public final class ProductError {
     public static final String NULL_NAME_PRODUCT_VALUE = "b2b54f6d-011";
     public static final String NULL_CATEGORY_PRODUCT_VALUE = "b2b54f6d-012";
     public static final String NULL_BRAND_PRODUCT_VALUE = "b2b54f6d-013";
-    public static final String NULL_PRODUCER_PRODUCER_VALUE = "b2b54f6d-014";
+    public static final String NULL_PRODUCER_PRODUCT_VALUE = "b2b54f6d-014";
     public static final String NULL_BARCODE_PRODUCT_VALUE = "b2b54f6d-015";
     public static final String NULL_SIZE_PRODUCT_VALUE = "b2b54f6d-016";
+    public static final String NULL_BARCODE_VALUE = "b2b54f6d-017";
+    public static final String ILLEGAL_PRICE_VALUE = "b2b54f6d-018";
+    public static final String ILLEGAL_BARCODE_VALUE = "b2b54f6d-019";
+    public static final String NULL_PRODUCT_ID_VALUE = "b2b54f6d-020";
 
     private ProductError() {
     }
@@ -92,7 +96,7 @@ public final class ProductError {
 
     public static CodedException errNullProducerProductValue() {
         var errMsg = "Value is null Producer in ProductBuilder";
-        return new CodedException(NULL_PRODUCER_PRODUCER_VALUE, errMsg);
+        return new CodedException(NULL_PRODUCER_PRODUCT_VALUE, errMsg);
     }
 
     public static CodedException errNullBarcodeProductValue() {
@@ -103,5 +107,25 @@ public final class ProductError {
     public static CodedException errNullSizeProductValue() {
         var errMsg = "Value is null Size in ProductBuilder";
         return new CodedException(NULL_SIZE_PRODUCT_VALUE, errMsg);
+    }
+
+    public static CodedException errBarcodeIsNull() {
+        var errMsg = "Value is null Barcode";
+        return new CodedException(NULL_BARCODE_VALUE, errMsg);
+    }
+
+    public static CodedException errIllegalPriceValue(String priceStr) {
+        var errMsg = String.format("Illegal value = '%s' format to create Price", priceStr);
+        return new CodedException(ILLEGAL_PRICE_VALUE, errMsg);
+    }
+
+    public static CodedException errIllegalBarcodeValue(String value) {
+        var errMsg = String.format("Illegal value = '%s' format to create Price", value);
+        return new CodedException(ILLEGAL_BARCODE_VALUE, errMsg);
+    }
+
+    public static CodedException errNullProductIDValue() {
+        var errMsg = "Value is null ProductID in ProductBuilder";
+        return new CodedException(NULL_PRODUCT_ID_VALUE, errMsg);
     }
 }

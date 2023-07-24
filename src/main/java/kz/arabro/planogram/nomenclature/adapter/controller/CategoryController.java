@@ -8,8 +8,8 @@ import kz.arabro.planogram.nomenclature.adapter.controller.response.CreateCatego
 import kz.arabro.planogram.nomenclature.adapter.controller.response.EditCategoryResponse;
 import kz.arabro.planogram.nomenclature.boundary.usecase.CreateCategoryUseCase;
 import kz.arabro.planogram.nomenclature.boundary.usecase.DeleteCategoryUseCase;
-import kz.arabro.planogram.nomenclature.boundary.usecase.UpdateCategoryUseCase;
 import kz.arabro.planogram.nomenclature.boundary.usecase.ReadDataCategoryUseCase;
+import kz.arabro.planogram.nomenclature.boundary.usecase.UpdateCategoryUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

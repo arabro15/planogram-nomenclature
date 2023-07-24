@@ -3,9 +3,9 @@ package kz.arabro.planogram.nomenclature.domain.usecase;
 import kz.arabro.planogram.nomenclature.boundary.model.ProducerEditInfo;
 import kz.arabro.planogram.nomenclature.boundary.repository.ProducerRepository;
 import kz.arabro.planogram.nomenclature.boundary.usecase.UpdateProducerUseCase;
-import kz.arabro.planogram.nomenclature.domain.entity.product.Name;
 import kz.arabro.planogram.nomenclature.domain.entity.producer.ProducerBuilder;
 import kz.arabro.planogram.nomenclature.domain.entity.producer.ProducerID;
+import kz.arabro.planogram.nomenclature.domain.entity.product.Name;
 import org.springframework.stereotype.Service;
 
 @Service

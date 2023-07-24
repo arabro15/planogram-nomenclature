@@ -1,7 +1,11 @@
 package kz.arabro.planogram.nomenclature.domain.entity.product;
 
 
+import java.util.regex.Pattern;
+
 public class Price {
+
+    private static final Pattern FORMAT_PATTERN = Pattern.compile("[^0-9-]");
 
     private String price;
 
@@ -10,9 +14,15 @@ public class Price {
     }
 
     public static Price of(String priceStr) {
-        if (priceStr == null) {
+        if (priceStr == null || priceStr.isBlank()) {
             throw ProductError.errNullValuePrice();
         }
+
+        var matcher = FORMAT_PATTERN.matcher(priceStr);
+        if (matcher.find()) {
+            throw ProductError.errIllegalPriceValue(priceStr);
+        }
+
         return new Price(priceStr);
     }
 

@@ -3,10 +3,10 @@ package kz.arabro.planogram.nomenclature.domain.usecase;
 import kz.arabro.planogram.nomenclature.boundary.model.ProducerCreateInfo;
 import kz.arabro.planogram.nomenclature.boundary.repository.ProducerRepository;
 import kz.arabro.planogram.nomenclature.boundary.usecase.CreateProducerUseCase;
-import kz.arabro.planogram.nomenclature.domain.entity.product.Name;
 import kz.arabro.planogram.nomenclature.domain.entity.producer.Producer;
 import kz.arabro.planogram.nomenclature.domain.entity.producer.ProducerBuilder;
 import kz.arabro.planogram.nomenclature.domain.entity.producer.ProducerID;
+import kz.arabro.planogram.nomenclature.domain.entity.product.Name;
 import org.springframework.stereotype.Service;
 
 @Service

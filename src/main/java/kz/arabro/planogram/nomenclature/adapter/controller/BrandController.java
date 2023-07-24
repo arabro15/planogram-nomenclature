@@ -11,8 +11,8 @@ import kz.arabro.planogram.nomenclature.adapter.controller.response.CreateBrandR
 import kz.arabro.planogram.nomenclature.adapter.controller.response.EditBrandResponse;
 import kz.arabro.planogram.nomenclature.boundary.usecase.CreateBrandUseCase;
 import kz.arabro.planogram.nomenclature.boundary.usecase.DeleteBrandUseCase;
-import kz.arabro.planogram.nomenclature.boundary.usecase.UpdateBrandUseCase;
 import kz.arabro.planogram.nomenclature.boundary.usecase.ReadDataBrandUseCase;
+import kz.arabro.planogram.nomenclature.boundary.usecase.UpdateBrandUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

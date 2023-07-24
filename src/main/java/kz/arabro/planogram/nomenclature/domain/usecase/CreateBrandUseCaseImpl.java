@@ -27,6 +27,7 @@ public class CreateBrandUseCaseImpl implements CreateBrandUseCase {
         if (info == null) {
             throw UseCaseError.errBrandCreateInfoIsRequired();
         }
+
         var brand = new BrandBuilder().
                 setID(BrandID.newID()).
                 setName(Name.of(info.getName())).
