@@ -13,5 +13,6 @@ public interface BrandRepository {
     void update(Brand brand);
     Optional<Brand> findByID(BrandID brandID);
     List<Brand> findAll();
+    boolean existsById(BrandID brandID);
 
 }

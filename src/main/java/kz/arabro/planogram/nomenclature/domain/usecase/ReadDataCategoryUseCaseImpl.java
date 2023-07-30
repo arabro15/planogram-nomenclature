@@ -32,14 +32,14 @@ public class ReadDataCategoryUseCaseImpl implements ReadDataCategoryUseCase {
     //CR: All можно убрать из названия метода
     // Тут же не все категории возвращаются
     @Override
-    public List<Category> findAllByParentID(String parentIDStr) {
+    public List<Category> findByParentID(String parentIDStr) {
         if (parentIDStr == null) {
             throw UseCaseError.errCategoryParentIdIsRequired();
         }
 
         var parentID = CategoryID.from(parentIDStr);
 
-        return categoryRepository.findAllByParentID(parentID);
+        return categoryRepository.findByParentID(parentID);
     }
 
     @Override

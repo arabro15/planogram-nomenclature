@@ -1,7 +1,5 @@
 package kz.arabro.planogram.nomenclature.domain.entity.product;
 
-import kz.arabro.planogram.nomenclature.domain.entity.brand.BrandBuilder;
-import kz.arabro.planogram.nomenclature.domain.entity.brand.BrandError;
 import kz.arabro.planogram.nomenclature.domain.exception.CodedException;
 import kz.arabro.planogram.nomenclature.testdouble.entity.*;
 import kz.arabro.planogram.nomenclature.util.generator.StringGenerator;

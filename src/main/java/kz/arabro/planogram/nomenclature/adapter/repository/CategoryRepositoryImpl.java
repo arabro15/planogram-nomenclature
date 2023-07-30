@@ -68,7 +68,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
 
     @Transactional
     @Override
-    public List<Category> findAllByParentID(CategoryID parentID) {
+    public List<Category> findByParentID(CategoryID parentID) {
         if (parentID == null) {
             throw RepositoryError.errCategoryParentIdIsRequired();
         }

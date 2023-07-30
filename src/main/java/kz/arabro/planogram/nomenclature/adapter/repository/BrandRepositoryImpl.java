@@ -43,7 +43,11 @@ public class BrandRepositoryImpl implements BrandRepository {
     @Transactional
     @Override
     public void update(Brand brand) {
-        save(brand);
+        if (brand == null) {
+            throw RepositoryError.errBrandIsRequired();
+        }
+        var brandDbModel = BrandConverter.toModel(brand);
+        brandDao.updateById(brandDbModel);
     }
 
     @Transactional
@@ -62,5 +66,15 @@ public class BrandRepositoryImpl implements BrandRepository {
     public List<Brand> findAll() {
         var brandDbModels = brandDao.findAll();
         return BrandConverter.toEntities(brandDbModels);
+    }
+
+    @Transactional
+    @Override
+    public boolean existsById(BrandID brandID) {
+        if (brandID == null) {
+            throw RepositoryError.errBrandIdIsRequired();
+        }
+
+        return brandDao.existsById(brandID.getValue());
     }
 }

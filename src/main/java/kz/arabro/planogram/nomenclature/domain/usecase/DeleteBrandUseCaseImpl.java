@@ -18,11 +18,15 @@ public class DeleteBrandUseCaseImpl implements DeleteBrandUseCase {
     }
 
     @Override
-    public void deleteBrandByID(@Nullable String brandID) {
-        if (brandID == null){
+    public void deleteBrandByID(@Nullable String brandIDStr) {
+        if (brandIDStr == null){
             throw UseCaseError.errBrandIdIsRequired();
         }
 
-        brandRepository.deleteById(BrandID.from(brandID));
+        var brandOpt = brandRepository.findByID(BrandID.from(brandIDStr));
+        if (brandOpt.isPresent()) {
+            var brandID = brandOpt.get().getId();
+            brandRepository.deleteById(brandID);
+        }
     }
 }

@@ -59,14 +59,12 @@ public class CreateProductUseCaseImpl implements CreateProductUseCase {
         }
 
         var barcode = Barcode.of(info.getBarcode());
-        var price = Price.of(info.getPrice());
         var height = Integer.parseInt(info.getHeight());
         var weight = Integer.parseInt(info.getWeight());
         var length = Integer.parseInt(info.getLength());
         var size = Size.of(height, weight, length);
-        var imagePath = info.getImagePath();
 
-        var product = new ProductBuilder().
+        var productBuilder = new ProductBuilder().
                 setProductID(ProductID.newID()).
                 setCode1C(code1C).
                 setRusName(rusName).
@@ -75,10 +73,18 @@ public class CreateProductUseCaseImpl implements CreateProductUseCase {
                 setBrand(brand).
                 setProducer(producer).
                 setBarcode(barcode).
-                setPrice(price).
-                setSize(size).
-                setImagePath(imagePath).
-                build();
+                setSize(size);
+
+        if (info.getPrice() != null) {
+            var price = Price.of(info.getPrice());
+            productBuilder.setPrice(price);
+        }
+        if (info.getImagePath() != null) {
+            var imagePath = info.getImagePath();
+            productBuilder.setImagePath(imagePath);
+        }
+
+        var product = productBuilder.build();
 
         productRepository.save(product);
         return product;

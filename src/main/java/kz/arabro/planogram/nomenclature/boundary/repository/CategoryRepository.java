@@ -13,7 +13,7 @@ public interface CategoryRepository {
     void deleteGroupCategoryByParentId(CategoryID parentID);
     void update(Category category);
     Optional<Category> findByID(CategoryID categoryID);
-    List<Category> findAllByParentID(CategoryID parentID);
+    List<Category> findByParentID(CategoryID parentID);
     List<Category> findAll();
 
 }

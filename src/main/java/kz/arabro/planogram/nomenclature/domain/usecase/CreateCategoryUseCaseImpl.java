@@ -27,16 +27,23 @@ public class CreateCategoryUseCaseImpl implements CreateCategoryUseCase {
         if (info == null) {
             throw UseCaseError.errCategoryCreateInfoIsRequired();
         }
-        var name = Name.of(info.getName());
-        var color = Color.valueOf(info.getColor());
-        var parentID = CategoryID.from(info.getParentID());
 
-        var category = new CategoryBuilder().
+        var name = Name.of(info.getName());
+        var color = Color.NONE;
+
+        if (info.getColor() != null) {
+            color = Color.valueOf(info.getColor());
+        }
+
+        var categoryBuilder = new CategoryBuilder().
                 setID(CategoryID.newID()).
                 setName(name).
-                setColor(color).
-                setParentID(parentID).
-                build();
+                setColor(color);
+        if (info.getParentID() != null) {
+            var parentID = CategoryID.from(info.getParentID());
+            categoryBuilder.setParentID(parentID);
+        }
+        var category = categoryBuilder.build();
 
         categoryRepository.save(category);
         return category;

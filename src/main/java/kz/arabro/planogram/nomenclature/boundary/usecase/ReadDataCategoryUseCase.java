@@ -7,6 +7,6 @@ import java.util.List;
 public interface ReadDataCategoryUseCase {
 
     Category findByID(String categoryID);
-    List<Category> findAllByParentID(String parentID);
+    List<Category> findByParentID(String parentID);
     List<Category> findAll();
 }

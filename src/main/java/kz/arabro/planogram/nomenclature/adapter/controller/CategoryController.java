@@ -84,7 +84,7 @@ public class CategoryController {
 
     @PostMapping(path = "/get-categories-by-parent-id")
     public List<CategoryResponse> getCategoriesByParentID(@RequestBody GetCategoriesByParentIDRequest request) {
-        var categories = readDataCategoryUseCase.findAllByParentID(request.getParentID());
+        var categories = readDataCategoryUseCase.findByParentID(request.getParentID());
         return CategoryResponseConverter.categoriesToResponses(categories);
     }
 

@@ -28,17 +28,19 @@ public class UpdateBrandUseCaseImpl implements UpdateBrandUseCase {
     @Override
     public void update(@Nullable BrandEditInfo brandEditInfo) {
         if (brandEditInfo == null){
-            throw UseCaseError.errBrandCreateInfoIsRequired();
+            throw UseCaseError.errBrandEditInfoIsRequired();
         }
 
         var brandID = BrandID.from(brandEditInfo.getBrandID());
         var name = Name.of(brandEditInfo.getName());
 
-        var brand = new BrandBuilder().
-                setID(brandID).
-                setName(name).
-                build();
+        if (brandRepository.existsById(brandID)) {
+            var brand = new BrandBuilder().
+                    setID(brandID).
+                    setName(name).
+                    build();
 
-        brandRepository.update(brand);
+            brandRepository.update(brand);
+        }
     }
 }
