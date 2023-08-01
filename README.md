@@ -29,3 +29,5 @@ POSTGRES_DB=local_db_planogram
 PGDATA=/var/lib/postgresql/data/pgdata
 ```
 ---
+# REST API
+[Просмотреть REST API](RESTAPI.md)
