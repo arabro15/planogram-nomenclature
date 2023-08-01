@@ -1,6 +1,5 @@
 package kz.arabro.planogram.nomenclature.domain.usecase;
 
-import kz.arabro.planogram.nomenclature.adapter.repository.RepositoryError;
 import kz.arabro.planogram.nomenclature.boundary.repository.ProducerRepository;
 import kz.arabro.planogram.nomenclature.boundary.usecase.DeleteProducerUseCase;
 import kz.arabro.planogram.nomenclature.domain.entity.producer.ProducerID;
@@ -16,11 +15,12 @@ public class DeleteProducerUseCaseImpl implements DeleteProducerUseCase {
     }
 
     @Override
-    public void deleteProducerByID(String producerID) {
-        if (producerID == null) {
-            throw RepositoryError.errProducerIdIsRequired();
+    public void deleteProducerByID(String producerIDStr) {
+        if (producerIDStr == null) {
+            throw UseCaseError.errProducerIDIsRequired();
         }
 
-        producerRepository.deleteById(ProducerID.from(producerID));
+        var producerID = ProducerID.from(producerIDStr);
+        producerRepository.deleteById(producerID);
     }
 }

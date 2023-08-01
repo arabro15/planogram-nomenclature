@@ -15,11 +15,12 @@ public class DeleteProductUseCaseImpl implements DeleteProductUseCase {
     }
 
     @Override
-    public void deleteProductByID(String productID) {
-        if (productID == null) {
+    public void deleteProductByID(String productIDStr) {
+        if (productIDStr == null) {
             throw UseCaseError.errProductIDIsRequired();
         }
 
-        productRepository.deleteById(ProductID.from(productID));
+        var productID = ProductID.from(productIDStr);
+        productRepository.deleteById(productID);
     }
 }

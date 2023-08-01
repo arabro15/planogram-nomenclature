@@ -46,8 +46,11 @@ public class BrandRepositoryImpl implements BrandRepository {
         if (brand == null) {
             throw RepositoryError.errBrandIsRequired();
         }
-        var brandDbModel = BrandConverter.toModel(brand);
-        brandDao.updateById(brandDbModel);
+
+        var id = brand.getId().getValue();
+        var name = brand.getName().getValue();
+
+        brandDao.updateById(id, name);
     }
 
     @Transactional

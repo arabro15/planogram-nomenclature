@@ -1,16 +1,10 @@
 package kz.arabro.planogram.nomenclature.domain.usecase;
 
-import kz.arabro.planogram.nomenclature.boundary.repository.BrandRepository;
 import kz.arabro.planogram.nomenclature.boundary.repository.CategoryRepository;
-import kz.arabro.planogram.nomenclature.boundary.usecase.ReadDataBrandUseCase;
 import kz.arabro.planogram.nomenclature.boundary.usecase.ReadDataCategoryUseCase;
-import kz.arabro.planogram.nomenclature.domain.entity.brand.BrandError;
-import kz.arabro.planogram.nomenclature.domain.entity.brand.BrandID;
 import kz.arabro.planogram.nomenclature.domain.entity.category.Category;
-import kz.arabro.planogram.nomenclature.domain.entity.category.CategoryError;
 import kz.arabro.planogram.nomenclature.domain.entity.category.CategoryID;
 import kz.arabro.planogram.nomenclature.domain.exception.CodedException;
-import kz.arabro.planogram.nomenclature.testdouble.entity.BrandStub;
 import kz.arabro.planogram.nomenclature.testdouble.entity.CategoryStub;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +12,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +36,7 @@ class ReadDataCategoryUseCaseImplTest {
     @Test
     void findByID_CategoryIDStrIsNull_ThrowEx() {
         var ex = assertThrows(CodedException.class, () -> readDataCategoryUseCase.findByID(null));
-        assertEquals(CategoryError.CATEGORY_ID_VALUE_IS_REQUIRED, ex.getCode());
+        assertEquals(UseCaseError.CATEGORY_ID_IS_REQUIRED, ex.getCode());
     }
 
     @Test
@@ -96,6 +89,33 @@ class ReadDataCategoryUseCaseImplTest {
         var actualCategories = readDataCategoryUseCase.findByParentID(parentID);
 
         assertNotNull(actualCategories);
+        assertEquals(categories, actualCategories);
+    }
+
+    @Test
+    void findAll_CategoryRepositoryIsRuntimeEx_ThrowEx() {
+        when(categoryRepository.findAll()).thenThrow(new RuntimeException());
+        assertThrows(RuntimeException.class, () -> readDataCategoryUseCase.findAll());
+    }
+
+    @Test
+    void findAll_CategoriesIsEmpty_ReturnNull() {
+        List<Category> categories = emptyList();
+        when(categoryRepository.findAll()).thenReturn(categories);
+
+        var actualCategories = readDataCategoryUseCase.findAll();
+
+        assertNotNull(actualCategories);
+        assertTrue(actualCategories.isEmpty());
+    }
+
+    @Test
+    void findAll_CategoriesExists_ReturnBrands() {
+        var categories = CategoryStub.getCategories(5);
+        when(categoryRepository.findAll()).thenReturn(categories);
+
+        var actualCategories = readDataCategoryUseCase.findAll();
+
         assertEquals(categories, actualCategories);
     }
 

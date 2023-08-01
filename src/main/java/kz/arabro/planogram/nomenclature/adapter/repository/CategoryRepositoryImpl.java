@@ -52,7 +52,24 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     @Transactional
     @Override
     public void update(Category category) {
-        save(category);
+        if (category == null) {
+            throw RepositoryError.errCategoryIsRequired();
+        }
+
+        var id = category.getId().getValue();
+        var name = category.getName().getValue();
+        var color = category.getColor().name();
+        var parentIDOpt = category.getParentID();
+
+        if (parentIDOpt.isPresent()) {
+            var parentID = parentIDOpt.get().getValue();
+            categoryDao.updateById(id, name, color, parentID);
+        }
+
+        if (parentIDOpt.isEmpty()) {
+            categoryDao.updateById(id, name, color, null);
+        }
+
     }
 
     @Transactional
@@ -73,7 +90,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
             throw RepositoryError.errCategoryParentIdIsRequired();
         }
 
-        var categoryDbModels = categoryDao.findAllByParentID(parentID.getValue());
+        var categoryDbModels = categoryDao.findByParentID(parentID.getValue());
         return CategoryConverter.toEntities(categoryDbModels);
     }
 

@@ -57,7 +57,7 @@ public class CategoryController {
 
     @PostMapping(path = "/delete-by-parent-id-categories")
     public ResponseEntity<Object> deleteCategoriesByParentID(@RequestBody DeleteCategoriesByParentIDRequest request) {
-        deleteCategoryUseCase.deleteCategoryByParentID(request.getParentID());
+        deleteCategoryUseCase.deleteCategoriesByParentID(request.getParentID());
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
@@ -77,7 +77,7 @@ public class CategoryController {
     }
 
     @PostMapping(path = "/get-category-by-id")
-    public CategoryResponse getCategoeyByID(@RequestBody GetCategoryByIDRequest request) {
+    public CategoryResponse getCategoryByID(@RequestBody GetCategoryByIDRequest request) {
         var category = readDataCategoryUseCase.findByID(request.getCategoryID());
         return CategoryResponseConverter.categoryToResponse(category);
     }

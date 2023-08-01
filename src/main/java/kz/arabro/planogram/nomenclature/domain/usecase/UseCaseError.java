@@ -24,7 +24,8 @@ public class UseCaseError {
     public static final String PRODUCT_IS_NOT_FOUND = "d281cc0a-015";
     public static final String PRODUCT_BY_CODE_1C_IS_NOT_FOUND = "d281cc0a-016";
     public static final String PRODUCER_ID_IS_REQUIRED = "d281cc0a-017";
-    private static final String BRAND_EDIT_INFO_IS_REQUIRED = "d281cc0a-018";
+    public static final String BRAND_EDIT_INFO_IS_REQUIRED = "d281cc0a-018";
+    public static final String PRODUCT_CODE_1C_IS_REQUIRED = "d281cc0a-019";
 
     public static CodedException errBrandCreateInfoIsRequired() {
         var errMsg = "Value to create BrandCreateInfo is required";
@@ -115,4 +116,11 @@ public class UseCaseError {
         var errMsg = "Value to create BrandEditInfo is required";
         return new CodedException(BRAND_EDIT_INFO_IS_REQUIRED, errMsg);
     }
+
+    public static CodedException errProductCode1cIsRequired() {
+        var errMsg = "Value to create Code1c is required";
+        return new CodedException(PRODUCT_CODE_1C_IS_REQUIRED, errMsg);
+    }
+
+    private UseCaseError () {}
 }

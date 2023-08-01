@@ -21,6 +21,7 @@ public class ReadDataProducerUseCaseImpl implements ReadDataProducerUseCase {
     public Producer findByID(String producerIDStr) {
         var producerID = ProducerID.from(producerIDStr);
         var producerOpt = producerRepository.findByID(producerID);
+
         return producerOpt.orElseThrow(() -> UseCaseError.errProducerNotFound(producerID));
     }
 

@@ -9,8 +9,8 @@ public interface ReadDataProductUseCase {
     Product findByID(String productID);
     Product findByCode1C(String code1C);
     List<Product> findAll();
-    List<Product> findAllByProducer(String producerID);
-    List<Product> findAllByCategory(String categoryID);
-    List<Product> findAllByBrand(String brandID);
+    List<Product> findByProducer(String producerID);
+    List<Product> findByCategory(String categoryID);
+    List<Product> findByBrand(String brandID);
 
 }

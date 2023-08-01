@@ -17,9 +17,7 @@ public interface ProductRepository {
     Optional<Product> findByID(ProductID productID);
     Optional<Product> findByCode1C(String code1C);
     List<Product> findAll();
-    List<Product> findAllByProducer(ProducerID producerID);
-    List<Product> findAllByCategory(CategoryID categoryID);
-    List<Product> findAllByBrand(BrandID brandID);
-
-
+    List<Product> findByProducer(ProducerID producerID);
+    List<Product> findByCategory(CategoryID categoryID);
+    List<Product> findByBrand(BrandID brandID);
 }

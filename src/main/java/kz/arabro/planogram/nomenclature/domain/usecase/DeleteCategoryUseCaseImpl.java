@@ -18,14 +18,15 @@ public class DeleteCategoryUseCaseImpl implements DeleteCategoryUseCase {
     }
 
     @Override
-    public void deleteCategoryByID(String categoryID) {
-        if (categoryID == null) {
+    public void deleteCategoryByID(String categoryIDStr) {
+        if (categoryIDStr == null) {
             throw UseCaseError.errCategoryIdIsRequired();
         }
 
         //CR: на мой взгляд, CategoryID.from(categoryID) лучше вынести в отдельную переменную.
         // Так код будет более читабельный
-        categoryRepository.deleteById(CategoryID.from(categoryID));
+        var categoryID = CategoryID.from(categoryIDStr);
+        categoryRepository.deleteById(categoryID);
 
     }
 
@@ -33,11 +34,12 @@ public class DeleteCategoryUseCaseImpl implements DeleteCategoryUseCase {
     // Если так, то тут могут быть удалены несколько категорий.
     // Это противоречит названию метода. Возможно стоит назвать deleteCategoriesByParentID
     @Override
-    public void deleteCategoryByParentID(String parentID) {
-        if (parentID == null) {
+    public void deleteCategoriesByParentID(String parentIDStr) {
+        if (parentIDStr == null) {
             throw UseCaseError.errCategoryParentIdIsRequired();
         }
 
-        categoryRepository.deleteGroupCategoryByParentId(CategoryID.from(parentID));
+        var parentID = CategoryID.from(parentIDStr);
+        categoryRepository.deleteGroupCategoryByParentId(parentID);
     }
 }

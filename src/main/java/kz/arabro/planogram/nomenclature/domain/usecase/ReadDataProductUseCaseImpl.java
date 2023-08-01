@@ -24,13 +24,19 @@ public class ReadDataProductUseCaseImpl implements ReadDataProductUseCase {
     public Product findByID(String productIDStr) {
         var productID = ProductID.from(productIDStr);
         var productOpt = productRepository.findByID(productID);
+
         return productOpt.
                 orElseThrow(() -> UseCaseError.errProductNotFound(productID));
     }
 
     @Override
     public Product findByCode1C(String code1C) {
+        if (code1C == null) {
+            throw UseCaseError.errProductCode1cIsRequired();
+        }
+
         var productOpt = productRepository.findByCode1C(code1C);
+
         return productOpt.
                 orElseThrow(() -> UseCaseError.errProductByCode1CNotFound(code1C));
     }
@@ -41,32 +47,35 @@ public class ReadDataProductUseCaseImpl implements ReadDataProductUseCase {
     }
 
     @Override
-    public List<Product> findAllByProducer(String producerIDStr) {
+    public List<Product> findByProducer(String producerIDStr) {
         if (producerIDStr == null) {
             throw UseCaseError.errProducerIDIsRequired();
         }
+
         var producerID = ProducerID.from(producerIDStr);
 
-        return productRepository.findAllByProducer(producerID);
+        return productRepository.findByProducer(producerID);
     }
 
     @Override
-    public List<Product> findAllByCategory(String categoryIDStr) {
+    public List<Product> findByCategory(String categoryIDStr) {
         if (categoryIDStr == null) {
             throw UseCaseError.errCategoryIdIsRequired();
         }
+
         var categoryID = CategoryID.from(categoryIDStr);
 
-        return productRepository.findAllByCategory(categoryID);
+        return productRepository.findByCategory(categoryID);
     }
 
     @Override
-    public List<Product> findAllByBrand(String brandIDStr) {
+    public List<Product> findByBrand(String brandIDStr) {
         if (brandIDStr == null) {
             throw UseCaseError.errBrandIdIsRequired();
         }
+
         var brandID = BrandID.from(brandIDStr);
 
-        return productRepository.findAllByBrand(brandID);
+        return productRepository.findByBrand(brandID);
     }
 }

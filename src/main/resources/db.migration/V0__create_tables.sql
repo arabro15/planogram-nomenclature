@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS public.category
     id       uuid PRIMARY KEY,
     name     text NOT NULL,
     color    text NOT NULL,
-    parentID uuid NOT NULL
+    parentID uuid
 );
 
 CREATE TABLE IF NOT EXISTS public.producer

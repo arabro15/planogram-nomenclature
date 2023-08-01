@@ -43,7 +43,14 @@ public class ProducerRepositoryImpl implements ProducerRepository {
     @Transactional
     @Override
     public void update(Producer producer) {
-        save(producer);
+        if (producer == null) {
+            throw RepositoryError.errProducerIsRequired();
+        }
+
+        var id = producer.getId().getValue();
+        var name = producer.getName().getValue();
+
+        producerDao.updateById(id, name);
     }
 
     @Transactional

@@ -23,10 +23,6 @@ public class DeleteBrandUseCaseImpl implements DeleteBrandUseCase {
             throw UseCaseError.errBrandIdIsRequired();
         }
 
-        var brandOpt = brandRepository.findByID(BrandID.from(brandIDStr));
-        if (brandOpt.isPresent()) {
-            var brandID = brandOpt.get().getId();
-            brandRepository.deleteById(brandID);
-        }
+        brandRepository.deleteById(BrandID.from(brandIDStr));
     }
 }

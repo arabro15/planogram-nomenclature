@@ -26,6 +26,6 @@ public class CategoryDbModel {
     @Column(name = "Color", nullable = false)
     private String color;
 
-    @Column(name = "parentID", nullable = false)
+    @Column(name = "parentID")
     private UUID parentID;
 }

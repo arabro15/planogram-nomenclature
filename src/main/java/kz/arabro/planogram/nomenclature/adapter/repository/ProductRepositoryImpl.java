@@ -1,5 +1,8 @@
 package kz.arabro.planogram.nomenclature.adapter.repository;
 
+import kz.arabro.planogram.nomenclature.adapter.repository.converter.BrandConverter;
+import kz.arabro.planogram.nomenclature.adapter.repository.converter.CategoryConverter;
+import kz.arabro.planogram.nomenclature.adapter.repository.converter.ProducerConverter;
 import kz.arabro.planogram.nomenclature.adapter.repository.converter.ProductConverter;
 import kz.arabro.planogram.nomenclature.adapter.repository.jpa.BrandDao;
 import kz.arabro.planogram.nomenclature.adapter.repository.jpa.CategoryDao;
@@ -58,7 +61,39 @@ public class ProductRepositoryImpl implements ProductRepository {
     @Transactional
     @Override
     public void update(Product product) {
-        save(product);
+        if (product == null) {
+            throw RepositoryError.errProductIsRequired();
+        }
+
+        var id = product.getProductID().getValue();
+        var code1c = product.getCode1C();
+        var rusName = product.getRusName().getValue();
+        var kazName = product.getKazName().getValue();
+        var category = CategoryConverter.toModel(product.getCategory());
+        var brand = BrandConverter.toModel(product.getBrand());
+        var producer = ProducerConverter.toModel(product.getProducer());
+        var barcode = product.getBarcode().getValue();
+        var price = product.getPrice().getPrice();
+        var height = String.valueOf(product.getSize().getHeight());
+        var weight = String.valueOf(product.getSize().getWeight());
+        var length = String.valueOf(product.getSize().getLength());
+        var imagePath = product.getImagePath();
+
+        productDao.updateById(
+                id,
+                code1c,
+                rusName,
+                kazName,
+                category,
+                brand,
+                producer,
+                barcode,
+                price,
+                height,
+                weight,
+                length,
+                imagePath
+        );
     }
 
     @Transactional
@@ -91,7 +126,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Transactional
     @Override
-    public List<Product> findAllByProducer(ProducerID producerID) {
+    public List<Product> findByProducer(ProducerID producerID) {
         if (producerID == null) {
             throw RepositoryError.errProducerIdIsRequired();
         }
@@ -108,7 +143,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Transactional
     @Override
-    public List<Product> findAllByCategory(CategoryID categoryID) {
+    public List<Product> findByCategory(CategoryID categoryID) {
         if (categoryID == null) {
             throw RepositoryError.errCategoryIdIsRequired();
         }
@@ -125,7 +160,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Transactional
     @Override
-    public List<Product> findAllByBrand(BrandID brandID) {
+    public List<Product> findByBrand(BrandID brandID) {
         if (brandID == null) {
             throw RepositoryError.errBrandIdIsRequired();
         }

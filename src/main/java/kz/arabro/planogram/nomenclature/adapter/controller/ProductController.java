@@ -87,19 +87,19 @@ public class ProductController {
 
     @PostMapping(path = "/get-products-by-producer")
     public List<ProductResponse> getProductsByProducer(@RequestBody GetProductsByProducerIDRequest request) {
-        var products = readDataProductUseCase.findAllByProducer(request.getProducerID());
+        var products = readDataProductUseCase.findByProducer(request.getProducerID());
         return ProductResponseConverter.productsToResponses(products);
     }
 
     @PostMapping(path = "/get-products-by-category")
     public List<ProductResponse> getProductsByCategory(@RequestBody GetProductsByCategoryIDRequest request) {
-        var products = readDataProductUseCase.findAllByCategory(request.getCategoryID());
+        var products = readDataProductUseCase.findByCategory(request.getCategoryID());
         return ProductResponseConverter.productsToResponses(products);
     }
 
     @PostMapping(path = "/get-products-by-brand")
     public List<ProductResponse> getProductsByBrand(@RequestBody GetProductsByBrandIDRequest request) {
-        var products = readDataProductUseCase.findAllByBrand(request.getBrandID());
+        var products = readDataProductUseCase.findByBrand(request.getBrandID());
         return ProductResponseConverter.productsToResponses(products);
     }
 

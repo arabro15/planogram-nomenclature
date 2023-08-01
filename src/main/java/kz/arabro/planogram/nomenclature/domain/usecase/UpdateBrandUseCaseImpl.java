@@ -27,20 +27,18 @@ public class UpdateBrandUseCaseImpl implements UpdateBrandUseCase {
     // Пока, я вижу, что у Brand можно заменить ID, а это очень странно
     @Override
     public void update(@Nullable BrandEditInfo brandEditInfo) {
-        if (brandEditInfo == null){
+        if (brandEditInfo == null) {
             throw UseCaseError.errBrandEditInfoIsRequired();
         }
 
         var brandID = BrandID.from(brandEditInfo.getBrandID());
         var name = Name.of(brandEditInfo.getName());
 
-        if (brandRepository.existsById(brandID)) {
-            var brand = new BrandBuilder().
-                    setID(brandID).
-                    setName(name).
-                    build();
+        var brand = new BrandBuilder().
+                setID(brandID).
+                setName(name).
+                build();
 
-            brandRepository.update(brand);
-        }
+        brandRepository.update(brand);
     }
 }

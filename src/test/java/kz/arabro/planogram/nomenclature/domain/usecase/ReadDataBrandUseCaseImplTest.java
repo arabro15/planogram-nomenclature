@@ -63,7 +63,7 @@ class ReadDataBrandUseCaseImplTest {
     }
 
     @Test
-    void findAll_BrandRepositoryThrowEx_ReturnAircraftList() {
+    void findAll_BrandRepositoryIsRuntimeEx_ThrowEx() {
         when(brandRepository.findAll()).thenThrow(new RuntimeException());
         assertThrows(RuntimeException.class, () -> readDataBrandUseCase.findAll());
     }
