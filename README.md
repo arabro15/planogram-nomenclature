@@ -7,7 +7,7 @@ Planogram-nomenclature - это микросервис занимающейся 
 Docker: 
 ---
 docker-compose.yml
-```
+```yml
 version: "1"
 services:
   database:
@@ -22,7 +22,7 @@ services:
       - env/db.env
 ```
 env/db.env
-```
+```env
 POSTGRES_USER=local_user_planogram
 POSTGRES_PASSWORD=yyq7UFmRn9pz
 POSTGRES_DB=local_db_planogram
@@ -34,13 +34,13 @@ PGDATA=/var/lib/postgresql/data/pgdata
 ### POST /api/v1/create-brand  
   
 Request:   
-```
+```json
 {
     "name": "String"
 }
 ```  
 Response:  
-```
+```json
 {
     "brandID": "UUIDStr"
 }
@@ -48,7 +48,7 @@ Response:
 ### POST /api/v1/delete-by-id-brand
   
 Request:   
-```
+```json
 {
     "brandID": "UUIDStr"
 }
@@ -60,14 +60,14 @@ Response:
 ### POST /api/v1/edit-brand
   
 Request:  
-```
+```json
 {
     "brandID": "UUIDStr",
     "name": "String"
 }
 ```  
 Response:   
-```
+```json
 {
     "brandID": "UUIDStr",
     "name": "String"
@@ -76,13 +76,13 @@ Response:
 ### POST /api/v1/get-brand-by-id  
   
 Request:   
-```
+```json
 {
     "brandID": "UUIDStr",
 }
 ```  
 Response:   
-```
+```json
 {
     "brandID": "UUIDStr",
     "name": "String"
@@ -94,7 +94,7 @@ Request:
 **empty**  
   
 Response:  
-```
+```json
 {
     "brandID": "UUIDStr",
     "name": "String"
@@ -105,13 +105,13 @@ Response:
 ### POST /api/v1/create-producer 
   
 Request:   
-```
+```json
 {
     "name": "String"
 }
 ```  
 Response:  
-```
+```json
 {
     "producerID": "UUIDStr"
 }
@@ -119,7 +119,7 @@ Response:
 ### POST /api/v1/delete-by-id-producer
   
 Request:   
-```
+```json
 {
     "producerID": "UUIDStr"
 }
@@ -131,14 +131,14 @@ Response:
 ### POST /api/v1/edit-producer
   
 Request:  
-```
+```json
 {
     "producerID": "UUIDStr",
     "name": "String"
 }
 ```  
 Response:   
-```
+```json
 {
     "producerID": "UUIDStr",
     "name": "String"
@@ -147,13 +147,13 @@ Response:
 ### POST /api/v1/get-producer-by-id  
   
 Request:   
-```
+```json
 {
     "producerID": "UUIDStr",
 }
 ```  
 Response:   
-```
+```json
 {
     "producerID": "UUIDStr",
     "name": "String"
@@ -165,7 +165,7 @@ Request:
 **empty**  
   
 Response:  
-```
+```json
 {
     "producerID": "UUIDStr",
     "name": "String"
@@ -176,7 +176,7 @@ Response:
 ### POST /api/v1/create-category
   
 Request:   
-```
+```json
 {
     "name": "String",
     "color": "String", //exapmle GREEN
@@ -185,7 +185,7 @@ Request:
 }
 ```  
 Response:  
-```
+```json
 {
     "categoryID": "UUIDStr"
 }
@@ -193,7 +193,7 @@ Response:
 ### POST /api/v1/delete-by-id-category
   
 Request:   
-```
+```json
 {
     "categoryID": "UUIDStr"
 }
@@ -205,7 +205,7 @@ Response:
 ### POST /api/v1/delete-by-parent-id-categories
   
 Request:   
-```
+```json
 {
     "parentID": "UUIDStr"
 }
@@ -217,7 +217,7 @@ Response:
 ### POST /api/v1/edit-category
   
 Request:  
-```
+```json
 {
     "categoryID": "UUIDStr",
     "name": "String",
@@ -226,7 +226,7 @@ Request:
 }
 ```  
 Response:   
-```
+```json
 {
     "categoryID": "UUIDStr",
     "name": "String",
@@ -237,13 +237,13 @@ Response:
 ### POST /api/v1/get-category-by-id  
   
 Request:   
-```
+```json
 {
     "categoryID": "UUIDStr"
 }
 ```  
 Response:   
-```
+```json
 {
     "categoryID": "UUIDStr",
     "name": "String",
@@ -254,13 +254,13 @@ Response:
 ### POST /api/v1/get-categories-by-parent-id  
   
 Request:   
-```
+```json
 {
     "parentID": "UUIDStr"
 }
 ```  
 Response:   
-```
+```json
 {
     "categoryID": "UUIDStr",
     "name": "String",
@@ -274,7 +274,7 @@ Request:
 **empty**  
   
 Response:  
-```
+```json
 {
     "categoryID": "UUIDStr",
     "name": "String",
@@ -287,7 +287,7 @@ Response:
 ### POST /api/v1/create-product
   
 Request:   
-```
+```json
 {
     "code1C": "String",
     "rusName": "String",
@@ -304,7 +304,7 @@ Request:
 }
 ```  
 Response:  
-```
+```json
 {
     "productID": "UUIDStr"
 }
@@ -312,7 +312,7 @@ Response:
 ### POST /api/v1/delete-by-id-product
   
 Request:   
-```
+```json
 {
     "productID": "UUIDStr"
 }
@@ -324,7 +324,7 @@ Response:
 ### POST /api/v1/edit-product
   
 Request:  
-```
+```json
 {
     "productID": "UUIDStr"
     "code1C": "String",
@@ -342,7 +342,7 @@ Request:
 }
 ```  
 Response:   
-```
+```json
 {
     "productID": "UUIDStr"
 }
@@ -351,13 +351,13 @@ Response:
 ### POST /api/v1/get-product-by-id  
   
 Request:   
-```
+```json
 {
     "productID": "UUIDStr"
 }
 ```  
 Response:   
-```
+```json
 {
     "productID": "UUIDStr"
     "code1C": "String",
@@ -378,13 +378,13 @@ Response:
 ### POST /api/v1/get-product-code-1c  
   
 Request:   
-```
+```json
 {
     "code1c": "String"
 }
 ```  
 Response:   
-```
+```json
 {
     "productID": "UUIDStr"
     "code1C": "String",
@@ -408,7 +408,7 @@ Request:
 **empty**  
   
 Response:  
-```
+```json
 {
     "productID": "UUIDStr"
     "code1C": "String",
@@ -428,13 +428,14 @@ Response:
 
 ### POST /api/v1/get-products-by-producer
   
-Request:   
+Request:  
+```json
 {
     "producerID": "UUIDStr"
 }
-  
-Response:  
 ```
+Response:  
+```json
 {
     "productID": "UUIDStr"
     "code1C": "String",
@@ -455,12 +456,13 @@ Response:
 ### POST /api/v1/get-products-by-category
   
 Request:   
+```json
 {
     "categoryID": "UUIDStr"
 }
-  
-Response:  
 ```
+Response:  
+```json
 {
     "productID": "UUIDStr"
     "code1C": "String",
@@ -481,12 +483,13 @@ Response:
 ### POST /api/v1/get-products-by-brand
   
 Request:   
+```json
 {
     "brandID": "UUIDStr"
 }
-  
+``` 
 Response:  
-```
+```json
 {
     "productID": "UUIDStr"
     "code1C": "String",
