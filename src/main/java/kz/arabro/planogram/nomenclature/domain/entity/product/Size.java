@@ -6,9 +6,6 @@ public class Size {
     private final int weight;
     private final int length;
 
-    //CR: Конструктор остался публичным, и это потенциальный источник ошибки.
-    // так как инвариант здесь не проверяется.
-    // В таких классах (object-value) конструктор делают приватным
     private Size(int height, int weight, int length) {
         this.height = height;
         this.weight = weight;

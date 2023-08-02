@@ -4,6 +4,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class BrandID {
+
     private final UUID value;
 
     public static BrandID newID() {

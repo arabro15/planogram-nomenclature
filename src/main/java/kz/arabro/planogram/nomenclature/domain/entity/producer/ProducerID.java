@@ -50,5 +50,4 @@ public class ProducerID {
     public int hashCode() {
         return Objects.hash(value);
     }
-
 }

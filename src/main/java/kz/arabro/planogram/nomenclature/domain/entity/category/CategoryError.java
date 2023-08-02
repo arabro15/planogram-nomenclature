@@ -4,16 +4,11 @@ import kz.arabro.planogram.nomenclature.domain.exception.CodedException;
 
 public final class CategoryError {
 
-    //CR: Коды ошибок предлагаю сделать публичными, так как тебе они пригодятся в тестах.
-    // Ну и никакой проблемы не будет втом, что они будут доступны во внешних классах
     public static final String CATEGORY_ID_VALUE_IS_REQUIRED = "f83fcc2e-001";
     public static final String ILLEGAL_CATEGORY_ID_VALUE = "f83fcc2e-002";
     public static final String NULL_ID_CATEGORY_VALUE = "f83fcc2e-003";
     public static final String NULL_NAME_CATEGORY_VALUE = "f83fcc2e-004";
     public static final String NULL_COLOR_CATEGORY_VALUE = "f83fcc2e-005";
-
-    private CategoryError() {
-    }
 
     public static CodedException errCategoryIDValueIsRequired() {
         var errMsg = "Value to create CategoryID is required";
@@ -39,4 +34,6 @@ public final class CategoryError {
         var errMsg = "Value is null Color in CategoryBuilder";
         return new CodedException(NULL_COLOR_CATEGORY_VALUE, errMsg);
     }
+
+    private CategoryError() {}
 }

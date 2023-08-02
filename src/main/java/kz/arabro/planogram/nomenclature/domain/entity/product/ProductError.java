@@ -3,9 +3,6 @@ package kz.arabro.planogram.nomenclature.domain.entity.product;
 import kz.arabro.planogram.nomenclature.domain.exception.CodedException;
 
 public final class ProductError {
-
-    // + CR: Коды ошибок предлагаю сделать публичными, так как тебе они пригодятся в тестах.
-    // Ну и никакой проблемы не будет втом, что они будут доступны во внешних классах
     public static final String PRODUCT_ID_VALUE_IS_REQUIRED = "b2b54f6d-001";
     public static final String ILLEGAL_PRODUCT_ID_VALUE = "b2b54f6d-002";
     public static final String EMPTY_NAME_VALUE = "b2b54f6d-003";
@@ -27,8 +24,6 @@ public final class ProductError {
     public static final String ILLEGAL_BARCODE_VALUE = "b2b54f6d-019";
     public static final String NULL_PRODUCT_ID_VALUE = "b2b54f6d-020";
 
-    private ProductError() {
-    }
     public static CodedException errProductIDValueIsRequired() {
         var errMsg = "Value to create ProductID is required";
         return new CodedException(PRODUCT_ID_VALUE_IS_REQUIRED, errMsg);
@@ -128,4 +123,6 @@ public final class ProductError {
         var errMsg = "Value is null ProductID in ProductBuilder";
         return new CodedException(NULL_PRODUCT_ID_VALUE, errMsg);
     }
+
+    private ProductError() {}
 }

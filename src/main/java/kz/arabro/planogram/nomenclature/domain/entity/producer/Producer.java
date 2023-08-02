@@ -19,5 +19,4 @@ public class Producer {
     public Name getName() {
         return this.name;
     }
-
 }

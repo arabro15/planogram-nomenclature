@@ -5,12 +5,9 @@ import java.util.regex.Pattern;
 
 public class Barcode {
 
-    private static final Pattern FORMAT_PATTERN = Pattern.compile("[^0-9]");
+    private static final Pattern FORMAT_PATTERN = Pattern.compile("\\D");
     private final String value;
 
-    //+CR: Конструктор остался публичным, и это потенциальный источник ошибки.
-    // так как инвариант здесь не проверяется.
-    // В таких классах (object-value) конструктор делают приватным
     private Barcode(String value) {
         this.value = value;
     }

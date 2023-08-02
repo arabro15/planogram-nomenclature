@@ -50,5 +50,4 @@ public class CategoryID {
     public int hashCode() {
         return Objects.hash(value);
     }
-
 }

@@ -23,7 +23,10 @@ public class CreateProductUseCaseImpl implements CreateProductUseCase {
     private final BrandRepository brandRepository;
     private final ProducerRepository producerRepository;
 
-    public CreateProductUseCaseImpl(ProductRepository productRepository, CategoryRepository categoryRepository, BrandRepository brandRepository, ProducerRepository producerRepository) {
+    public CreateProductUseCaseImpl(ProductRepository productRepository,
+                                    CategoryRepository categoryRepository,
+                                    BrandRepository brandRepository,
+                                    ProducerRepository producerRepository) {
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
         this.brandRepository = brandRepository;
