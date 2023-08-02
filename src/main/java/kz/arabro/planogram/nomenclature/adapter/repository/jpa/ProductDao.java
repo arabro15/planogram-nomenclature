@@ -16,11 +16,11 @@ import java.util.UUID;
 public interface ProductDao extends JpaRepository<ProductDbModel, UUID> {
     Optional<ProductDbModel> findByCode1C(String code1C);
 
-    List<ProductDbModel> findAllByCategory(CategoryDbModel category);
+    List<ProductDbModel> findByCategory(CategoryDbModel category);
 
-    List<ProductDbModel> findAllByProducer(ProducerDbModel producer);
+    List<ProductDbModel> findByProducer(ProducerDbModel producer);
 
-    List<ProductDbModel> findAllByBrand(BrandDbModel brand);
+    List<ProductDbModel> findByBrand(BrandDbModel brand);
 
     @Modifying
     @Query("UPDATE ProductDbModel " +

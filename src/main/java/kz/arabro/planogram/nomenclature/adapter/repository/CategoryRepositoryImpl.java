@@ -42,11 +42,11 @@ public class CategoryRepositoryImpl implements CategoryRepository {
 
     @Transactional
     @Override
-    public void deleteGroupCategoryByParentId(CategoryID parentID) {
+    public void deleteCategoriesByParentId(CategoryID parentID) {
         if (parentID == null) {
             throw RepositoryError.errCategoryParentIdIsRequired();
         }
-        categoryDao.deleteAllByParentID(parentID.getValue());
+        categoryDao.deleteByParentID(parentID.getValue());
     }
 
     @Transactional

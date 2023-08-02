@@ -137,7 +137,7 @@ public class ProductRepositoryImpl implements ProductRepository {
             throw RepositoryError.errProducerDbModelIsRequired();
         }
 
-        var productDbModels = productDao.findAllByProducer(producerDbModel.get());
+        var productDbModels = productDao.findByProducer(producerDbModel.get());
         return ProductConverter.toEntities(productDbModels);
     }
 
@@ -154,7 +154,7 @@ public class ProductRepositoryImpl implements ProductRepository {
             throw RepositoryError.errCategoryDbModelIsRequired();
         }
 
-        var productDbModels = productDao.findAllByCategory(categoryDbModel.get());
+        var productDbModels = productDao.findByCategory(categoryDbModel.get());
         return ProductConverter.toEntities(productDbModels);
     }
 
@@ -171,7 +171,7 @@ public class ProductRepositoryImpl implements ProductRepository {
             throw RepositoryError.errBrandDbModelIsRequired();
         }
 
-        var productDbModels = productDao.findAllByBrand(brandDbModel.get());
+        var productDbModels = productDao.findByBrand(brandDbModel.get());
         return ProductConverter.toEntities(productDbModels);
     }
 

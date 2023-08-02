@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.UUID;
 
 public interface CategoryDao extends JpaRepository<CategoryDbModel, UUID> {
-    void deleteAllByParentID(UUID parentID);
+
+    void deleteByParentID(UUID parentID);
     List<CategoryDbModel> findByParentID(UUID parentID);
 
     @Modifying

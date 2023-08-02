@@ -10,7 +10,7 @@ public interface CategoryRepository {
 
     void save(Category category);
     void deleteById(CategoryID categoryID);
-    void deleteGroupCategoryByParentId(CategoryID parentID);
+    void deleteCategoriesByParentId(CategoryID parentID);
     void update(Category category);
     Optional<Category> findByID(CategoryID categoryID);
     List<Category> findByParentID(CategoryID parentID);

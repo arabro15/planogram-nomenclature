@@ -59,6 +59,170 @@ class UpdateProductUseCaseImplTest {
     }
 
     @Test
+    void update_CategoryOptIsEmpty_ThrowEx() {
+        var product = ProductStub.getProduct();
+
+        var productIDStr = product.getProductID().getValue().toString();
+        var code1C = product.getCode1C();
+        var rusName = product.getRusName().getValue();
+        var kazName = product.getKazName().getValue();
+
+        var category = product.getCategory();
+        var categoryID = category.getId();
+        var categoryIDStr = categoryID.getValue().toString();
+
+        var brand = product.getBrand();
+        var brandID = brand.getId();
+        var brandIDStr = brandID.getValue().toString();
+
+        var producer = product.getProducer();
+        var producerID = producer.getId();
+        var producerIDStr = producerID.getValue().toString();
+
+        var barcode = product.getBarcode().getValue();
+        var price = product.getPrice().getValue();
+        var height = String.valueOf(product.getSize().getHeight());
+        var weight = String.valueOf(product.getSize().getWeight());
+        var length = String.valueOf(product.getSize().getLength());
+        var imagePath = product.getImagePath();
+
+        var productEditInfo = new ProductEditInfo();
+        productEditInfo.setId(productIDStr);
+        productEditInfo.setCode1C(code1C);
+        productEditInfo.setRusName(rusName);
+        productEditInfo.setKazName(kazName);
+        productEditInfo.setCategory(categoryIDStr);
+        productEditInfo.setBrand(brandIDStr);
+        productEditInfo.setProducer(producerIDStr);
+        productEditInfo.setBarcode(barcode);
+        productEditInfo.setPrice(price);
+        productEditInfo.setHeight(height);
+        productEditInfo.setWeight(weight);
+        productEditInfo.setLength(length);
+        productEditInfo.setImagePath(imagePath);
+
+        when(categoryRepository.findByID(categoryID)).thenReturn(Optional.empty());
+        when(brandRepository.findByID(brandID)).thenReturn(Optional.of(brand));
+        when(producerRepository.findByID(producerID)).thenReturn(Optional.of(producer));
+
+        var ex = assertThrows(CodedException.class, () -> updateProductUseCase.update(productEditInfo));
+        assertEquals(UseCaseError.CATEGORY_IS_NOT_FOUND, ex.getCode());
+
+        verify(categoryRepository, times(1)).findByID(any(CategoryID.class));
+        verify(brandRepository, times(1)).findByID(any(BrandID.class));
+        verify(producerRepository, times(1)).findByID(any(ProducerID.class));
+    }
+
+    @Test
+    void update_BrandOptIsEmpty_ThrowEx() {
+        var product = ProductStub.getProduct();
+
+        var productIDStr = product.getProductID().getValue().toString();
+        var code1C = product.getCode1C();
+        var rusName = product.getRusName().getValue();
+        var kazName = product.getKazName().getValue();
+
+        var category = product.getCategory();
+        var categoryID = category.getId();
+        var categoryIDStr = categoryID.getValue().toString();
+
+        var brand = product.getBrand();
+        var brandID = brand.getId();
+        var brandIDStr = brandID.getValue().toString();
+
+        var producer = product.getProducer();
+        var producerID = producer.getId();
+        var producerIDStr = producerID.getValue().toString();
+
+        var barcode = product.getBarcode().getValue();
+        var price = product.getPrice().getValue();
+        var height = String.valueOf(product.getSize().getHeight());
+        var weight = String.valueOf(product.getSize().getWeight());
+        var length = String.valueOf(product.getSize().getLength());
+        var imagePath = product.getImagePath();
+
+        var productEditInfo = new ProductEditInfo();
+        productEditInfo.setId(productIDStr);
+        productEditInfo.setCode1C(code1C);
+        productEditInfo.setRusName(rusName);
+        productEditInfo.setKazName(kazName);
+        productEditInfo.setCategory(categoryIDStr);
+        productEditInfo.setBrand(brandIDStr);
+        productEditInfo.setProducer(producerIDStr);
+        productEditInfo.setBarcode(barcode);
+        productEditInfo.setPrice(price);
+        productEditInfo.setHeight(height);
+        productEditInfo.setWeight(weight);
+        productEditInfo.setLength(length);
+        productEditInfo.setImagePath(imagePath);
+
+        when(categoryRepository.findByID(categoryID)).thenReturn(Optional.of(category));
+        when(brandRepository.findByID(brandID)).thenReturn(Optional.empty());
+        when(producerRepository.findByID(producerID)).thenReturn(Optional.of(producer));
+
+        var ex = assertThrows(CodedException.class, () -> updateProductUseCase.update(productEditInfo));
+        assertEquals(UseCaseError.BRAND_IS_NOT_FOUND, ex.getCode());
+
+        verify(categoryRepository, times(1)).findByID(any(CategoryID.class));
+        verify(brandRepository, times(1)).findByID(any(BrandID.class));
+        verify(producerRepository, times(1)).findByID(any(ProducerID.class));
+    }
+
+    @Test
+    void update_ProducerOptIsEmpty_ThrowEx() {
+        var product = ProductStub.getProduct();
+
+        var productIDStr = product.getProductID().getValue().toString();
+        var code1C = product.getCode1C();
+        var rusName = product.getRusName().getValue();
+        var kazName = product.getKazName().getValue();
+
+        var category = product.getCategory();
+        var categoryID = category.getId();
+        var categoryIDStr = categoryID.getValue().toString();
+
+        var brand = product.getBrand();
+        var brandID = brand.getId();
+        var brandIDStr = brandID.getValue().toString();
+
+        var producer = product.getProducer();
+        var producerID = producer.getId();
+        var producerIDStr = producerID.getValue().toString();
+
+        var barcode = product.getBarcode().getValue();
+        var price = product.getPrice().getValue();
+        var height = String.valueOf(product.getSize().getHeight());
+        var weight = String.valueOf(product.getSize().getWeight());
+        var length = String.valueOf(product.getSize().getLength());
+        var imagePath = product.getImagePath();
+
+        var productEditInfo = new ProductEditInfo();
+        productEditInfo.setId(productIDStr);
+        productEditInfo.setCode1C(code1C);
+        productEditInfo.setRusName(rusName);
+        productEditInfo.setKazName(kazName);
+        productEditInfo.setCategory(categoryIDStr);
+        productEditInfo.setBrand(brandIDStr);
+        productEditInfo.setProducer(producerIDStr);
+        productEditInfo.setBarcode(barcode);
+        productEditInfo.setPrice(price);
+        productEditInfo.setHeight(height);
+        productEditInfo.setWeight(weight);
+        productEditInfo.setLength(length);
+        productEditInfo.setImagePath(imagePath);
+
+        when(categoryRepository.findByID(categoryID)).thenReturn(Optional.of(category));
+        when(brandRepository.findByID(brandID)).thenReturn(Optional.of(brand));
+        when(producerRepository.findByID(producerID)).thenReturn(Optional.empty());
+
+        var ex = assertThrows(CodedException.class, () -> updateProductUseCase.update(productEditInfo));
+        assertEquals(UseCaseError.PRODUCER_IS_NOT_FOUND, ex.getCode());
+
+        verify(categoryRepository, times(1)).findByID(any(CategoryID.class));
+        verify(brandRepository, times(1)).findByID(any(BrandID.class));
+        verify(producerRepository, times(1)).findByID(any(ProducerID.class));
+    }
+    @Test
     void update_ValueIsValid_UpdateBrand() {
         var product = ProductStub.getProduct();
 

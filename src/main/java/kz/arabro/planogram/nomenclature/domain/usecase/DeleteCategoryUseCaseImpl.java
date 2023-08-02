@@ -32,6 +32,6 @@ public class DeleteCategoryUseCaseImpl implements DeleteCategoryUseCase {
         }
 
         var parentID = CategoryID.from(parentIDStr);
-        categoryRepository.deleteGroupCategoryByParentId(parentID);
+        categoryRepository.deleteCategoriesByParentId(parentID);
     }
 }

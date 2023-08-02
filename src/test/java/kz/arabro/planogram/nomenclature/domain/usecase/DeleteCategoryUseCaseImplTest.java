@@ -56,7 +56,7 @@ class DeleteCategoryUseCaseImplTest {
         var parentIDStr = parentID.getValue().toString();
 
         deleteCategoryUseCase.deleteCategoriesByParentID(parentIDStr);
-        verify(categoryRepository, times(1)).deleteGroupCategoryByParentId(parentID);
+        verify(categoryRepository, times(1)).deleteCategoriesByParentId(parentID);
     }
 
 
