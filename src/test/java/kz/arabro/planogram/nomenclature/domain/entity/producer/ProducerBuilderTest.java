@@ -11,18 +11,20 @@ class ProducerBuilderTest {
     @Test
     void build_ProducerIDIsNull_ThrowEx() {
         var name = NameStub.getName();
-        var builder = new ProducerBuilder();
+        var builder = new ProducerBuilder()
+                .setName(name);
 
-        var ex = assertThrows(CodedException.class, () -> builder.setName(name).build());
+        var ex = assertThrows(CodedException.class, builder::build);
         assertEquals(ProducerError.NULL_ID_PRODUCER_VALUE, ex.getCode());
     }
 
     @Test
     void build_NameIsNull_ThrowEx() {
         var producerID = ProducerID.newID();
-        var builder = new ProducerBuilder();
+        var builder = new ProducerBuilder()
+                .setId(producerID);
 
-        var ex = assertThrows(CodedException.class, () -> builder.setId(producerID).build());
+        var ex = assertThrows(CodedException.class, builder::build);
         assertEquals(ProducerError.NULL_NAME_PRODUCER_VALUE, ex.getCode());
     }
 

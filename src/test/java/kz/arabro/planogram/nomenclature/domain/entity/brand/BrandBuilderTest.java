@@ -11,18 +11,20 @@ class BrandBuilderTest {
     @Test
     void build_BrandIDIsNull_ThrowEx() {
         var name = NameStub.getName();
-        var builder = new BrandBuilder();
+        var builder = new BrandBuilder().
+                setName(name);
 
-        var ex = assertThrows(CodedException.class, () -> builder.setName(name).build());
+        var ex = assertThrows(CodedException.class, builder::build);
         assertEquals(BrandError.NULL_ID_BRAND_VALUE, ex.getCode());
     }
 
     @Test
     void build_NameIsNull_ThrowEx() {
         var brandID = BrandID.newID();
-        var builder = new BrandBuilder();
+        var builder = new BrandBuilder().
+                setID(brandID);
 
-        var ex = assertThrows(CodedException.class, () -> builder.setID(brandID).build());
+        var ex = assertThrows(CodedException.class, builder::build);
         assertEquals(BrandError.NULL_NAME_BRAND_VALUE, ex.getCode());
     }
 

@@ -13,15 +13,12 @@ class CategoryBuilderTest {
         var name = NameStub.getName();
         var color = Color.RED;
         var parentID = CategoryID.newID();
-        var builder = new CategoryBuilder();
+        var builder = new CategoryBuilder().
+                setName(name).
+                setColor(color).
+                setParentID(parentID);
 
-        var ex = assertThrows(CodedException.class,
-                () -> builder.
-                        setName(name).
-                        setColor(color).
-                        setParentID(parentID).
-                        build()
-        );
+        var ex = assertThrows(CodedException.class, builder::build);
         assertEquals(CategoryError.NULL_ID_CATEGORY_VALUE, ex.getCode());
     }
 
@@ -30,15 +27,12 @@ class CategoryBuilderTest {
         var categoryID = CategoryID.newID();
         var color = Color.RED;
         var parentID = CategoryID.newID();
-        var builder = new CategoryBuilder();
+        var builder = new CategoryBuilder().
+                setID(categoryID).
+                setColor(color).
+                setParentID(parentID);
 
-        var ex = assertThrows(CodedException.class,
-                () -> builder.
-                        setID(categoryID).
-                        setColor(color).
-                        setParentID(parentID).
-                        build()
-        );
+        var ex = assertThrows(CodedException.class, builder::build);
         assertEquals(CategoryError.NULL_NAME_CATEGORY_VALUE, ex.getCode());
     }
 
@@ -47,15 +41,12 @@ class CategoryBuilderTest {
         var categoryID = CategoryID.newID();
         var name = NameStub.getName();
         var parentID = CategoryID.newID();
-        var builder = new CategoryBuilder();
+        var builder = new CategoryBuilder().
+                setID(categoryID).
+                setName(name).
+                setParentID(parentID);
 
-        var ex = assertThrows(CodedException.class,
-                () -> builder.
-                        setID(categoryID).
-                        setName(name).
-                        setParentID(parentID).
-                        build()
-        );
+        var ex = assertThrows(CodedException.class, builder::build);
         assertEquals(CategoryError.NULL_COLOR_CATEGORY_VALUE, ex.getCode());
     }
 
