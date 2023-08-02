@@ -24,12 +24,12 @@ public class ControllerError {
     private ControllerError() {}
 
     public static CodedException errBrandRequestIsRequired() {
-        var errMsg = "request is required";
+        var errMsg = "Brand Request is required";
         return new CodedException(BRAND_REQUEST_IS_REQUIRED , errMsg);
     }
 
     public static CodedException errBrandRequestNullIsRequired() {
-        var errMsg = "request null is required";
+        var errMsg = "Brand Request null is required";
         return new CodedException(BRAND_NAME_IS_REQUIRED, errMsg);
     }
 
@@ -44,12 +44,12 @@ public class ControllerError {
     }
 
     public static CodedException errProducerRequestIsRequired() {
-        var errMsg = "request is required";
+        var errMsg = "Producer request is required";
         return new CodedException(PRODUCER_REQUEST_IS_REQUIRED , errMsg);
     }
 
     public static CodedException errProducerRequestNullIsRequired() {
-        var errMsg = "request null is required";
+        var errMsg = "Producer request null is required";
         return new CodedException(PRODUCER_NAME_IS_REQUIRED, errMsg);
     }
 
@@ -64,12 +64,12 @@ public class ControllerError {
     }
 
     public static CodedException errCategoryRequestIsRequired() {
-        var errMsg = "request is required";
+        var errMsg = "Category request is required";
         return new CodedException(CATEGORY_REQUEST_IS_REQUIRED , errMsg);
     }
 
     public static CodedException errCategoryRequestNullIsRequired() {
-        var errMsg = "request null is required";
+        var errMsg = "Category request null is required";
         return new CodedException(CATEGORY_REQUEST_NULL_IS_REQUIRED, errMsg);
     }
 
@@ -84,12 +84,12 @@ public class ControllerError {
     }
 
     public static CodedException errCreateProductRequestIsRequired() {
-        var errMsg = "request null is required";
+        var errMsg = "Product request null is required";
         return new CodedException(CREATE_PRODUCT_REQUEST_IS_REQUIRED, errMsg);
     }
 
     public static CodedException errEditProductRequestIsRequired() {
-        var errMsg = "request null is required";
+        var errMsg = "Product request null is required";
         return new CodedException(EDIT_PRODUCT_REQUEST_IS_REQUIRED, errMsg);
     }
 

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SizeTest {
+class SizeTest {
 
     @Test
     void of_HeightIsNegativeValue_ThrowEx() {

@@ -38,6 +38,6 @@ class PriceTest {
         var price = Price.of(priceStr);
 
         assertNotNull(price);
-        assertEquals(priceStr, price.getPrice());
+        assertEquals(priceStr, price.getValue());
     }
 }

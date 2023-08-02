@@ -7,10 +7,10 @@ public class Price {
 
     private static final Pattern FORMAT_PATTERN = Pattern.compile("[^0-9-]");
 
-    private String price;
+    private final String value;
 
     private Price(String price) {
-        this.price = price;
+        this.value = price;
     }
 
     public static Price of(String priceStr) {
@@ -26,7 +26,7 @@ public class Price {
         return new Price(priceStr);
     }
 
-    public String getPrice() {
-        return this.price;
+    public String getValue() {
+        return this.value;
     }
 }

@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class CreateProductUseCaseImplTest {
+class CreateProductUseCaseImplTest {
 
     @Mock
     private ProductRepository productRepository;
@@ -132,7 +132,7 @@ public class CreateProductUseCaseImplTest {
         var producerIDStr = producerID.getValue().toString();
 
         var barcode = BarcodeStub.getBarcode().getValue();
-        var price = PriceStub.getPrice().getPrice();
+        var price = PriceStub.getPrice().getValue();
         var height = String.valueOf(SizeStub.getSize().getHeight());
         var weight = String.valueOf(SizeStub.getSize().getWeight());
         var length = String.valueOf(SizeStub.getSize().getLength());
@@ -165,7 +165,7 @@ public class CreateProductUseCaseImplTest {
         assertEquals(brand, product.getBrand());
         assertEquals(producer, product.getProducer());
         assertEquals(barcode, product.getBarcode().getValue());
-        assertEquals(price, product.getPrice().getPrice());
+        assertEquals(price, product.getPrice().getValue());
         assertEquals(height, String.valueOf(product.getSize().getHeight()));
         assertEquals(weight, String.valueOf(product.getSize().getWeight()));
         assertEquals(length, String.valueOf(product.getSize().getLength()));
@@ -259,7 +259,7 @@ public class CreateProductUseCaseImplTest {
         var producerIDStr = producerID.getValue().toString();
 
         var barcode = BarcodeStub.getBarcode().getValue();
-        var price = PriceStub.getPrice().getPrice();
+        var price = PriceStub.getPrice().getValue();
         var height = String.valueOf(SizeStub.getSize().getHeight());
         var weight = String.valueOf(SizeStub.getSize().getWeight());
         var length = String.valueOf(SizeStub.getSize().getLength());
@@ -293,7 +293,7 @@ public class CreateProductUseCaseImplTest {
         assertEquals(brand, product.getBrand());
         assertEquals(producer, product.getProducer());
         assertEquals(barcode, product.getBarcode().getValue());
-        assertEquals(price, product.getPrice().getPrice());
+        assertEquals(price, product.getPrice().getValue());
         assertEquals(height, String.valueOf(product.getSize().getHeight()));
         assertEquals(weight, String.valueOf(product.getSize().getWeight()));
         assertEquals(length, String.valueOf(product.getSize().getLength()));

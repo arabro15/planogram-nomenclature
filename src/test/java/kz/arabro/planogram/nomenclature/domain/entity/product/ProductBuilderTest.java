@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ProductBuilderTest {
+class ProductBuilderTest {
 
     @Test
     void build_ProductIDIsNull_ThrowEx() {
@@ -22,22 +22,19 @@ public class ProductBuilderTest {
         var size = SizeStub.getSize();
         var imagePath = StringGenerator.getRandomString();
 
-        var builder = new ProductBuilder();
+        var builder = new ProductBuilder().
+                setCode1C(code1C).
+                setRusName(rusName).
+                setKazName(kazName).
+                setCategory(category).
+                setBrand(brand).
+                setProducer(producer).
+                setBarcode(barcode).
+                setPrice(price).
+                setSize(size).
+                setImagePath(imagePath);
 
-        var ex = assertThrows(CodedException.class,
-                () -> builder.
-                        setCode1C(code1C).
-                        setRusName(rusName).
-                        setKazName(kazName).
-                        setCategory(category).
-                        setBrand(brand).
-                        setProducer(producer).
-                        setBarcode(barcode).
-                        setPrice(price).
-                        setSize(size).
-                        setImagePath(imagePath).
-                        build()
-        );
+        var ex = assertThrows(CodedException.class, builder::build);
         assertEquals(ProductError.NULL_PRODUCT_ID_VALUE, ex.getCode());
     }
 
@@ -54,22 +51,19 @@ public class ProductBuilderTest {
         var size = SizeStub.getSize();
         var imagePath = StringGenerator.getRandomString();
 
-        var builder = new ProductBuilder();
+        var builder = new ProductBuilder().
+                setProductID(productID).
+                setRusName(rusName).
+                setKazName(kazName).
+                setCategory(category).
+                setBrand(brand).
+                setProducer(producer).
+                setBarcode(barcode).
+                setPrice(price).
+                setSize(size).
+                setImagePath(imagePath);
 
-        var ex = assertThrows(CodedException.class,
-                () -> builder.
-                        setProductID(productID).
-                        setRusName(rusName).
-                        setKazName(kazName).
-                        setCategory(category).
-                        setBrand(brand).
-                        setProducer(producer).
-                        setBarcode(barcode).
-                        setPrice(price).
-                        setSize(size).
-                        setImagePath(imagePath).
-                        build()
-        );
+        var ex = assertThrows(CodedException.class, builder::build);
         assertEquals(ProductError.NULL_CODE1C_PRODUCT_VALUE, ex.getCode());
     }
 
@@ -86,22 +80,19 @@ public class ProductBuilderTest {
         var size = SizeStub.getSize();
         var imagePath = StringGenerator.getRandomString();
 
-        var builder = new ProductBuilder();
+        var builder = new ProductBuilder().
+                setProductID(productID).
+                setCode1C(code1C).
+                setKazName(kazName).
+                setCategory(category).
+                setBrand(brand).
+                setProducer(producer).
+                setBarcode(barcode).
+                setPrice(price).
+                setSize(size).
+                setImagePath(imagePath);
 
-        var ex = assertThrows(CodedException.class,
-                () -> builder.
-                        setProductID(productID).
-                        setCode1C(code1C).
-                        setKazName(kazName).
-                        setCategory(category).
-                        setBrand(brand).
-                        setProducer(producer).
-                        setBarcode(barcode).
-                        setPrice(price).
-                        setSize(size).
-                        setImagePath(imagePath).
-                        build()
-        );
+        var ex = assertThrows(CodedException.class, builder::build);
         assertEquals(ProductError.NULL_NAME_PRODUCT_VALUE, ex.getCode());
     }
 
@@ -118,22 +109,19 @@ public class ProductBuilderTest {
         var size = SizeStub.getSize();
         var imagePath = StringGenerator.getRandomString();
 
-        var builder = new ProductBuilder();
+        var builder = new ProductBuilder().
+                setProductID(productID).
+                setCode1C(code1C).
+                setRusName(rusName).
+                setCategory(category).
+                setBrand(brand).
+                setProducer(producer).
+                setBarcode(barcode).
+                setPrice(price).
+                setSize(size).
+                setImagePath(imagePath);
 
-        var ex = assertThrows(CodedException.class,
-                () -> builder.
-                        setProductID(productID).
-                        setCode1C(code1C).
-                        setRusName(rusName).
-                        setCategory(category).
-                        setBrand(brand).
-                        setProducer(producer).
-                        setBarcode(barcode).
-                        setPrice(price).
-                        setSize(size).
-                        setImagePath(imagePath).
-                        build()
-        );
+        var ex = assertThrows(CodedException.class, builder::build);
         assertEquals(ProductError.NULL_NAME_PRODUCT_VALUE, ex.getCode());
     }
 
@@ -150,22 +138,19 @@ public class ProductBuilderTest {
         var size = SizeStub.getSize();
         var imagePath = StringGenerator.getRandomString();
 
-        var builder = new ProductBuilder();
+        var builder = new ProductBuilder().
+                setProductID(productID).
+                setCode1C(code1C).
+                setRusName(rusName).
+                setKazName(kazName).
+                setBrand(brand).
+                setProducer(producer).
+                setBarcode(barcode).
+                setPrice(price).
+                setSize(size).
+                setImagePath(imagePath);
 
-        var ex = assertThrows(CodedException.class,
-                () -> builder.
-                        setProductID(productID).
-                        setCode1C(code1C).
-                        setRusName(rusName).
-                        setKazName(kazName).
-                        setBrand(brand).
-                        setProducer(producer).
-                        setBarcode(barcode).
-                        setPrice(price).
-                        setSize(size).
-                        setImagePath(imagePath).
-                        build()
-        );
+        var ex = assertThrows(CodedException.class, builder::build);
         assertEquals(ProductError.NULL_CATEGORY_PRODUCT_VALUE, ex.getCode());
     }
 
@@ -182,22 +167,19 @@ public class ProductBuilderTest {
         var size = SizeStub.getSize();
         var imagePath = StringGenerator.getRandomString();
 
-        var builder = new ProductBuilder();
+        var builder = new ProductBuilder().
+                setProductID(productID).
+                setCode1C(code1C).
+                setRusName(rusName).
+                setKazName(kazName).
+                setCategory(category).
+                setProducer(producer).
+                setBarcode(barcode).
+                setPrice(price).
+                setSize(size).
+                setImagePath(imagePath);
 
-        var ex = assertThrows(CodedException.class,
-                () -> builder.
-                        setProductID(productID).
-                        setCode1C(code1C).
-                        setRusName(rusName).
-                        setKazName(kazName).
-                        setCategory(category).
-                        setProducer(producer).
-                        setBarcode(barcode).
-                        setPrice(price).
-                        setSize(size).
-                        setImagePath(imagePath).
-                        build()
-        );
+        var ex = assertThrows(CodedException.class, builder::build);
         assertEquals(ProductError.NULL_BRAND_PRODUCT_VALUE, ex.getCode());
     }
 
@@ -214,22 +196,19 @@ public class ProductBuilderTest {
         var size = SizeStub.getSize();
         var imagePath = StringGenerator.getRandomString();
 
-        var builder = new ProductBuilder();
+        var builder = new ProductBuilder().
+                setProductID(productID).
+                setCode1C(code1C).
+                setRusName(rusName).
+                setKazName(kazName).
+                setCategory(category).
+                setBrand(brand).
+                setBarcode(barcode).
+                setPrice(price).
+                setSize(size).
+                setImagePath(imagePath);
 
-        var ex = assertThrows(CodedException.class,
-                () -> builder.
-                        setProductID(productID).
-                        setCode1C(code1C).
-                        setRusName(rusName).
-                        setKazName(kazName).
-                        setCategory(category).
-                        setBrand(brand).
-                        setBarcode(barcode).
-                        setPrice(price).
-                        setSize(size).
-                        setImagePath(imagePath).
-                        build()
-        );
+        var ex = assertThrows(CodedException.class, builder::build);
         assertEquals(ProductError.NULL_PRODUCER_PRODUCT_VALUE, ex.getCode());
     }
 
@@ -246,22 +225,19 @@ public class ProductBuilderTest {
         var size = SizeStub.getSize();
         var imagePath = StringGenerator.getRandomString();
 
-        var builder = new ProductBuilder();
+        var builder = new ProductBuilder().
+                setProductID(productID).
+                setCode1C(code1C).
+                setRusName(rusName).
+                setKazName(kazName).
+                setCategory(category).
+                setBrand(brand).
+                setProducer(producer).
+                setPrice(price).
+                setSize(size).
+                setImagePath(imagePath);
 
-        var ex = assertThrows(CodedException.class,
-                () -> builder.
-                        setProductID(productID).
-                        setCode1C(code1C).
-                        setRusName(rusName).
-                        setKazName(kazName).
-                        setCategory(category).
-                        setBrand(brand).
-                        setProducer(producer).
-                        setPrice(price).
-                        setSize(size).
-                        setImagePath(imagePath).
-                        build()
-        );
+        var ex = assertThrows(CodedException.class, builder::build);
         assertEquals(ProductError.NULL_BARCODE_PRODUCT_VALUE, ex.getCode());
     }
 
@@ -278,23 +254,20 @@ public class ProductBuilderTest {
         var price = PriceStub.getPrice();
         var imagePath = StringGenerator.getRandomString();
 
-        var builder = new ProductBuilder();
+        var builder = new ProductBuilder().
+                setProductID(productID).
+                setCode1C(code1C).
+                setRusName(rusName).
+                setKazName(kazName).
+                setCategory(category).
+                setBrand(brand).
+                setProducer(producer).
+                setBarcode(barcode).
+                setPrice(price).
+                setSize(null).
+                setImagePath(imagePath);
 
-        var ex = assertThrows(CodedException.class,
-                () -> builder.
-                        setProductID(productID).
-                        setCode1C(code1C).
-                        setRusName(rusName).
-                        setKazName(kazName).
-                        setCategory(category).
-                        setBrand(brand).
-                        setProducer(producer).
-                        setBarcode(barcode).
-                        setPrice(price).
-                        setSize(null).
-                        setImagePath(imagePath).
-                        build()
-        );
+        var ex = assertThrows(CodedException.class, builder::build);
         assertEquals(ProductError.NULL_SIZE_PRODUCT_VALUE, ex.getCode());
     }
 
@@ -419,6 +392,6 @@ public class ProductBuilderTest {
         assertEquals(price, product.getPrice());
         assertEquals(barcode, product.getBarcode());
         assertEquals(size, product.getSize());
-        assertEquals(imagePath,product.getImagePath());
+        assertEquals(imagePath, product.getImagePath());
     }
 }

@@ -21,7 +21,7 @@ public class ProductResponseConverter {
         var brand = BrandResponseConverter.brandToResponse(product.getBrand());
         var producer = ProducerResponseConverter.producerToResponse(product.getProducer());
         var barcode = product.getBarcode().getValue();
-        var price = product.getPrice().getPrice();
+        var price = product.getPrice().getValue();
         var height = String.valueOf(product.getSize().getHeight());
         var weight = String.valueOf(product.getSize().getWeight());
         var length = String.valueOf(product.getSize().getLength());

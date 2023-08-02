@@ -73,7 +73,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         var brand = BrandConverter.toModel(product.getBrand());
         var producer = ProducerConverter.toModel(product.getProducer());
         var barcode = product.getBarcode().getValue();
-        var price = product.getPrice().getPrice();
+        var price = product.getPrice().getValue();
         var height = String.valueOf(product.getSize().getHeight());
         var weight = String.valueOf(product.getSize().getWeight());
         var length = String.valueOf(product.getSize().getLength());

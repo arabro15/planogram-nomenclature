@@ -8,7 +8,7 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ProductIDTest {
+class ProductIDTest {
 
     @Test
     void newID_ReturnProductID() {
