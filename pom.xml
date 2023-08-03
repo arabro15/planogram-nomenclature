@@ -15,6 +15,10 @@
     <description>planogram-nomenclature</description>
     <properties>
         <java.version>17</java.version>
+
+        <testconatiner.pg.version>1.18.3</testconatiner.pg.version>
+
+        <junit-version>5.9.3</junit-version>
     </properties>
     <dependencies>
         <dependency>
@@ -42,9 +46,22 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+        <!-- Test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${testconatiner.pg.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
