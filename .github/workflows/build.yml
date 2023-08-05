@@ -26,6 +26,9 @@ jobs:
       - name: Maven verify
         run: mvn -B clean verify
 
+      - name: Codecov
+        uses: codecov/codecov-action@v3.1.4
+
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
         env:
