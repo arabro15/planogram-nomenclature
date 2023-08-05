@@ -37,7 +37,5 @@ public class BrandRequestConverter {
         return brandEditInfo;
     }
 
-
-
     private BrandRequestConverter() {}
 }

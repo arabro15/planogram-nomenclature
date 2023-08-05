@@ -2,7 +2,7 @@ package kz.arabro.planogram.nomenclature.adapter.controller.converter;
 
 import kz.arabro.planogram.nomenclature.adapter.controller.ControllerError;
 import kz.arabro.planogram.nomenclature.adapter.controller.response.ProducerResponse;
-import kz.arabro.planogram.nomenclature.domain.entity.Producer;
+import kz.arabro.planogram.nomenclature.domain.entity.producer.Producer;
 
 import java.util.List;
 
@@ -34,5 +34,4 @@ public class ProducerResponseConverter {
     }
 
     private ProducerResponseConverter() {}
-
 }

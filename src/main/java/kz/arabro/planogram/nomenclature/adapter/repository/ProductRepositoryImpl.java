@@ -6,7 +6,11 @@ import kz.arabro.planogram.nomenclature.adapter.repository.jpa.CategoryDao;
 import kz.arabro.planogram.nomenclature.adapter.repository.jpa.ProducerDao;
 import kz.arabro.planogram.nomenclature.adapter.repository.jpa.ProductDao;
 import kz.arabro.planogram.nomenclature.boundary.repository.ProductRepository;
-import kz.arabro.planogram.nomenclature.domain.entity.*;
+import kz.arabro.planogram.nomenclature.domain.entity.brand.BrandID;
+import kz.arabro.planogram.nomenclature.domain.entity.category.CategoryID;
+import kz.arabro.planogram.nomenclature.domain.entity.producer.ProducerID;
+import kz.arabro.planogram.nomenclature.domain.entity.product.Product;
+import kz.arabro.planogram.nomenclature.domain.entity.product.ProductID;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,6 +43,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         }
 
         var productDbModel = ProductConverter.toModel(product);
+
         productDao.save(productDbModel);
     }
 
@@ -48,13 +53,20 @@ public class ProductRepositoryImpl implements ProductRepository {
         if (productID == null) {
             throw RepositoryError.errProductIdIsRequired();
         }
+
         productDao.deleteById(productID.getValue());
     }
 
     @Transactional
     @Override
     public void update(Product product) {
-        save(product);
+        if (product == null) {
+            throw RepositoryError.errProductIsRequired();
+        }
+
+        var productDbModel = ProductConverter.toModel(product);
+
+        productDao.updateById(productDbModel);
     }
 
     @Transactional
@@ -87,7 +99,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Transactional
     @Override
-    public List<Product> findAllByProducer(ProducerID producerID) {
+    public List<Product> findByProducer(ProducerID producerID) {
         if (producerID == null) {
             throw RepositoryError.errProducerIdIsRequired();
         }
@@ -98,13 +110,14 @@ public class ProductRepositoryImpl implements ProductRepository {
             throw RepositoryError.errProducerDbModelIsRequired();
         }
 
-        var productDbModels = productDao.findAllByProducer(producerDbModel.get());
+        var productDbModels = productDao.findByProducer(producerDbModel.get());
+
         return ProductConverter.toEntities(productDbModels);
     }
 
     @Transactional
     @Override
-    public List<Product> findAllByCategory(CategoryID categoryID) {
+    public List<Product> findByCategory(CategoryID categoryID) {
         if (categoryID == null) {
             throw RepositoryError.errCategoryIdIsRequired();
         }
@@ -115,13 +128,14 @@ public class ProductRepositoryImpl implements ProductRepository {
             throw RepositoryError.errCategoryDbModelIsRequired();
         }
 
-        var productDbModels = productDao.findAllByCategory(categoryDbModel.get());
+        var productDbModels = productDao.findByCategory(categoryDbModel.get());
+
         return ProductConverter.toEntities(productDbModels);
     }
 
     @Transactional
     @Override
-    public List<Product> findAllByBrand(BrandID brandID) {
+    public List<Product> findByBrand(BrandID brandID) {
         if (brandID == null) {
             throw RepositoryError.errBrandIdIsRequired();
         }
@@ -132,7 +146,8 @@ public class ProductRepositoryImpl implements ProductRepository {
             throw RepositoryError.errBrandDbModelIsRequired();
         }
 
-        var productDbModels = productDao.findAllByBrand(brandDbModel.get());
+        var productDbModels = productDao.findByBrand(brandDbModel.get());
+
         return ProductConverter.toEntities(productDbModels);
     }
 

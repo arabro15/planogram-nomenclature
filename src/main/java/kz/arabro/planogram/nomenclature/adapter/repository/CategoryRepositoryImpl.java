@@ -3,8 +3,8 @@ package kz.arabro.planogram.nomenclature.adapter.repository;
 import kz.arabro.planogram.nomenclature.adapter.repository.converter.CategoryConverter;
 import kz.arabro.planogram.nomenclature.adapter.repository.jpa.CategoryDao;
 import kz.arabro.planogram.nomenclature.boundary.repository.CategoryRepository;
-import kz.arabro.planogram.nomenclature.domain.entity.Category;
-import kz.arabro.planogram.nomenclature.domain.entity.CategoryID;
+import kz.arabro.planogram.nomenclature.domain.entity.category.Category;
+import kz.arabro.planogram.nomenclature.domain.entity.category.CategoryID;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,22 +37,41 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         if(categoryID == null) {
             throw RepositoryError.errCategoryIdIsRequired();
         }
+
         categoryDao.deleteById(categoryID.getValue());
     }
 
     @Transactional
     @Override
-    public void deleteGroupCategoryByParentId(CategoryID parentID) {
+    public void deleteCategoriesByParentId(CategoryID parentID) {
         if (parentID == null) {
             throw RepositoryError.errCategoryParentIdIsRequired();
         }
-        categoryDao.deleteAllByParentID(parentID.getValue());
+
+        categoryDao.deleteByParentID(parentID.getValue());
     }
 
     @Transactional
     @Override
     public void update(Category category) {
-        save(category);
+        if (category == null) {
+            throw RepositoryError.errCategoryIsRequired();
+        }
+
+        var id = category.getId().getValue();
+        var name = category.getName().getValue();
+        var color = category.getColor().name();
+        var parentIDOpt = category.getParentID();
+
+        if (parentIDOpt.isPresent()) {
+            var parentID = parentIDOpt.get().getValue();
+            categoryDao.updateById(id, name, color, parentID);
+        }
+
+        if (parentIDOpt.isEmpty()) {
+            categoryDao.updateById(id, name, color, null);
+        }
+
     }
 
     @Transactional
@@ -68,12 +87,12 @@ public class CategoryRepositoryImpl implements CategoryRepository {
 
     @Transactional
     @Override
-    public List<Category> findAllByParentID(CategoryID parentID) {
+    public List<Category> findByParentID(CategoryID parentID) {
         if (parentID == null) {
             throw RepositoryError.errCategoryParentIdIsRequired();
         }
 
-        var categoryDbModels = categoryDao.findAllByParentID(parentID.getValue());
+        var categoryDbModels = categoryDao.findByParentID(parentID.getValue());
         return CategoryConverter.toEntities(categoryDbModels);
     }
 

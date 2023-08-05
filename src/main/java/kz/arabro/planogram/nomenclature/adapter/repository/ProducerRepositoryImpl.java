@@ -3,8 +3,8 @@ package kz.arabro.planogram.nomenclature.adapter.repository;
 import kz.arabro.planogram.nomenclature.adapter.repository.converter.ProducerConverter;
 import kz.arabro.planogram.nomenclature.adapter.repository.jpa.ProducerDao;
 import kz.arabro.planogram.nomenclature.boundary.repository.ProducerRepository;
-import kz.arabro.planogram.nomenclature.domain.entity.Producer;
-import kz.arabro.planogram.nomenclature.domain.entity.ProducerID;
+import kz.arabro.planogram.nomenclature.domain.entity.producer.Producer;
+import kz.arabro.planogram.nomenclature.domain.entity.producer.ProducerID;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,13 +37,21 @@ public class ProducerRepositoryImpl implements ProducerRepository {
         if (producerID == null) {
             throw RepositoryError.errProducerIdIsRequired();
         }
+
         producerDao.deleteById(producerID.getValue());
     }
 
     @Transactional
     @Override
     public void update(Producer producer) {
-        save(producer);
+        if (producer == null) {
+            throw RepositoryError.errProducerIsRequired();
+        }
+
+        var id = producer.getId().getValue();
+        var name = producer.getName().getValue();
+
+        producerDao.updateById(id, name);
     }
 
     @Transactional
@@ -52,6 +60,7 @@ public class ProducerRepositoryImpl implements ProducerRepository {
         if (producerID == null) {
             throw RepositoryError.errProducerIdIsRequired();
         }
+
         return producerDao.findById(producerID.getValue()).
                 map(ProducerConverter::toEntity);
     }

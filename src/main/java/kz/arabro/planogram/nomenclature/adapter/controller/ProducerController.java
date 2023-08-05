@@ -9,10 +9,10 @@ import kz.arabro.planogram.nomenclature.adapter.controller.request.GetProducerBy
 import kz.arabro.planogram.nomenclature.adapter.controller.response.CreateProducerResponse;
 import kz.arabro.planogram.nomenclature.adapter.controller.response.EditProducerResponse;
 import kz.arabro.planogram.nomenclature.adapter.controller.response.ProducerResponse;
-import kz.arabro.planogram.nomenclature.boundary.usecase.ProducerCreatorUseCase;
-import kz.arabro.planogram.nomenclature.boundary.usecase.ProducerDeleteUseCase;
-import kz.arabro.planogram.nomenclature.boundary.usecase.ProducerEditorUseCase;
-import kz.arabro.planogram.nomenclature.boundary.usecase.ProducerReadDataUseCase;
+import kz.arabro.planogram.nomenclature.boundary.usecase.CreateProducerUseCase;
+import kz.arabro.planogram.nomenclature.boundary.usecase.DeleteProducerUseCase;
+import kz.arabro.planogram.nomenclature.boundary.usecase.ReadDataProducerUseCase;
+import kz.arabro.planogram.nomenclature.boundary.usecase.UpdateProducerUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,35 +26,36 @@ import java.util.List;
 @RequestMapping(path = "/api/v1")
 public class ProducerController {
 
-    private final ProducerCreatorUseCase producerCreatorUseCase;
-    private final ProducerDeleteUseCase producerDeleteUseCase;
-    private final ProducerEditorUseCase producerEditorUseCase;
-    private final ProducerReadDataUseCase producerReadDataUseCase;
+    private final CreateProducerUseCase createProducerUseCase;
+    private final DeleteProducerUseCase deleteProducerUseCase;
+    private final UpdateProducerUseCase updateProducerUseCase;
+    private final ReadDataProducerUseCase readDataProducerUseCase;
 
-    public ProducerController(ProducerCreatorUseCase producerCreatorUseCase,
-                              ProducerDeleteUseCase producerDeleteUseCase,
-                              ProducerEditorUseCase producerEditorUseCase,
-                              ProducerReadDataUseCase producerReadDataUseCase) {
-        this.producerCreatorUseCase = producerCreatorUseCase;
-        this.producerDeleteUseCase = producerDeleteUseCase;
-        this.producerEditorUseCase = producerEditorUseCase;
-        this.producerReadDataUseCase = producerReadDataUseCase;
+    public ProducerController(CreateProducerUseCase createProducerUseCase,
+                              DeleteProducerUseCase deleteProducerUseCase,
+                              UpdateProducerUseCase updateProducerUseCase,
+                              ReadDataProducerUseCase readDataProducerUseCase) {
+        this.createProducerUseCase = createProducerUseCase;
+        this.deleteProducerUseCase = deleteProducerUseCase;
+        this.updateProducerUseCase = updateProducerUseCase;
+        this.readDataProducerUseCase = readDataProducerUseCase;
     }
 
     @PostMapping(path = "/create-producer")
     public CreateProducerResponse createProducer(@RequestBody CreateProducerRequest request) {
         var info = ProducerRequestConverter.createProducerRequestToModel(request);
 
-        var producer = producerCreatorUseCase.execute(info);
+        var producer = createProducerUseCase.execute(info);
 
         var response = new CreateProducerResponse();
         response.setProducerID(producer.getId().getValue().toString());
+
         return response;
     }
 
     @PostMapping(path = "/delete-by-id-producer")
     public ResponseEntity<Object> deleteProducer(@RequestBody DeleteProducerRequest request) {
-        producerDeleteUseCase.deleteProducerByID(request.getProducerID());
+        deleteProducerUseCase.deleteProducerByID(request.getProducerID());
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
@@ -62,7 +63,7 @@ public class ProducerController {
     public EditProducerResponse editProducer(@RequestBody EditProducerRequest request) {
         var producer = ProducerRequestConverter.editProducerRequestToModel(request);
 
-        producerEditorUseCase.update(producer);
+        updateProducerUseCase.update(producer);
 
         var response = new EditProducerResponse();
         response.setProducerID(producer.getProducerID());
@@ -73,16 +74,13 @@ public class ProducerController {
 
     @PostMapping(path = "/get-producer-by-id")
     public ProducerResponse getProducerByID(@RequestBody GetProducerByIDRequest request) {
-        var producer = producerReadDataUseCase.findByID(request.getProducerID());
+        var producer = readDataProducerUseCase.findByID(request.getProducerID());
         return ProducerResponseConverter.producerToResponse(producer);
     }
 
     @PostMapping(path = "/get-all-producers")
     public List<ProducerResponse> getAllProducers() {
-        var producers = producerReadDataUseCase.findAll();
+        var producers = readDataProducerUseCase.findAll();
         return ProducerResponseConverter.producersToResponses(producers);
     }
-
-
-
 }

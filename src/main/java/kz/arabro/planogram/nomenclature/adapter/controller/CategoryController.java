@@ -6,10 +6,10 @@ import kz.arabro.planogram.nomenclature.adapter.controller.request.*;
 import kz.arabro.planogram.nomenclature.adapter.controller.response.CategoryResponse;
 import kz.arabro.planogram.nomenclature.adapter.controller.response.CreateCategoryResponse;
 import kz.arabro.planogram.nomenclature.adapter.controller.response.EditCategoryResponse;
-import kz.arabro.planogram.nomenclature.boundary.usecase.CategoryCreatorUseCase;
-import kz.arabro.planogram.nomenclature.boundary.usecase.CategoryDeleteUseCase;
-import kz.arabro.planogram.nomenclature.boundary.usecase.CategoryEditorUseCase;
-import kz.arabro.planogram.nomenclature.boundary.usecase.CategoryReadDataUseCase;
+import kz.arabro.planogram.nomenclature.boundary.usecase.CreateCategoryUseCase;
+import kz.arabro.planogram.nomenclature.boundary.usecase.DeleteCategoryUseCase;
+import kz.arabro.planogram.nomenclature.boundary.usecase.ReadDataCategoryUseCase;
+import kz.arabro.planogram.nomenclature.boundary.usecase.UpdateCategoryUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,26 +22,26 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "/api/v1")
 public class CategoryController {
-    private final CategoryCreatorUseCase categoryCreatorUseCase;
-    private final CategoryDeleteUseCase categoryDeleteUseCase;
-    private final CategoryEditorUseCase categoryEditorUseCase;
-    private final CategoryReadDataUseCase categoryReadDataUseCase;
+    private final CreateCategoryUseCase createCategoryUseCase;
+    private final DeleteCategoryUseCase deleteCategoryUseCase;
+    private final UpdateCategoryUseCase updateCategoryUseCase;
+    private final ReadDataCategoryUseCase readDataCategoryUseCase;
 
-    public CategoryController(CategoryCreatorUseCase categoryCreatorUseCase,
-                              CategoryDeleteUseCase categoryDeleteUseCase,
-                              CategoryEditorUseCase categoryEditorUseCase,
-                              CategoryReadDataUseCase categoryReadDataUseCase) {
-        this.categoryCreatorUseCase = categoryCreatorUseCase;
-        this.categoryDeleteUseCase = categoryDeleteUseCase;
-        this.categoryEditorUseCase = categoryEditorUseCase;
-        this.categoryReadDataUseCase = categoryReadDataUseCase;
+    public CategoryController(CreateCategoryUseCase createCategoryUseCase,
+                              DeleteCategoryUseCase deleteCategoryUseCase,
+                              UpdateCategoryUseCase updateCategoryUseCase,
+                              ReadDataCategoryUseCase readDataCategoryUseCase) {
+        this.createCategoryUseCase = createCategoryUseCase;
+        this.deleteCategoryUseCase = deleteCategoryUseCase;
+        this.updateCategoryUseCase = updateCategoryUseCase;
+        this.readDataCategoryUseCase = readDataCategoryUseCase;
     }
 
     @PostMapping(path = "/create-category")
     public CreateCategoryResponse createCategory(@RequestBody CreateCategoryRequest request) {
         var info = CategoryRequestConverter.createCategoryRequestToModel(request);
 
-        var category = categoryCreatorUseCase.execute(info);
+        var category = createCategoryUseCase.execute(info);
 
         var response = new CreateCategoryResponse();
         response.setCategoryID(category.getId().getValue().toString());
@@ -51,13 +51,13 @@ public class CategoryController {
 
     @PostMapping(path = "/delete-by-id-category")
     public ResponseEntity<Object> deleteCategory(@RequestBody DeleteCategoryRequest request) {
-        categoryDeleteUseCase.deleteCategoryByID(request.getCategoryID());
+        deleteCategoryUseCase.deleteCategoryByID(request.getCategoryID());
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
     @PostMapping(path = "/delete-by-parent-id-categories")
     public ResponseEntity<Object> deleteCategoriesByParentID(@RequestBody DeleteCategoriesByParentIDRequest request) {
-        categoryDeleteUseCase.deleteCategoryByParentID(request.getParentID());
+        deleteCategoryUseCase.deleteCategoriesByParentID(request.getParentID());
         return ResponseEntity.status(HttpStatus.OK).body(null);
     }
 
@@ -65,7 +65,7 @@ public class CategoryController {
     public EditCategoryResponse editCategory(@RequestBody EditCategoryRequest request) {
         var category = CategoryRequestConverter.editCategoryRequestToModel(request);
 
-        categoryEditorUseCase.update(category);
+        updateCategoryUseCase.update(category);
 
         var response = new EditCategoryResponse();
         response.setCategoryID(category.getCategoryID());
@@ -77,20 +77,20 @@ public class CategoryController {
     }
 
     @PostMapping(path = "/get-category-by-id")
-    public CategoryResponse getCategoeyByID(@RequestBody GetCategoryByIDRequest request) {
-        var category = categoryReadDataUseCase.findByID(request.getCategoryID());
+    public CategoryResponse getCategoryByID(@RequestBody GetCategoryByIDRequest request) {
+        var category = readDataCategoryUseCase.findByID(request.getCategoryID());
         return CategoryResponseConverter.categoryToResponse(category);
     }
 
     @PostMapping(path = "/get-categories-by-parent-id")
     public List<CategoryResponse> getCategoriesByParentID(@RequestBody GetCategoriesByParentIDRequest request) {
-        var categories = categoryReadDataUseCase.findAllByParentID(request.getParentID());
+        var categories = readDataCategoryUseCase.findByParentID(request.getParentID());
         return CategoryResponseConverter.categoriesToResponses(categories);
     }
 
     @PostMapping(path = "/get-all-categories")
     public List<CategoryResponse> getAllCategories() {
-        var categories = categoryReadDataUseCase.findAll();
+        var categories = readDataCategoryUseCase.findAll();
         return CategoryResponseConverter.categoriesToResponses(categories);
     }
 

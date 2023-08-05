@@ -2,7 +2,7 @@ package kz.arabro.planogram.nomenclature.adapter.controller.converter;
 
 import kz.arabro.planogram.nomenclature.adapter.controller.ControllerError;
 import kz.arabro.planogram.nomenclature.adapter.controller.response.BrandResponse;
-import kz.arabro.planogram.nomenclature.domain.entity.Brand;
+import kz.arabro.planogram.nomenclature.domain.entity.brand.Brand;
 
 import java.util.List;
 

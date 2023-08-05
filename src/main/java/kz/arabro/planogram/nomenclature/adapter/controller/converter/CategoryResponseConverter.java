@@ -2,7 +2,7 @@ package kz.arabro.planogram.nomenclature.adapter.controller.converter;
 
 import kz.arabro.planogram.nomenclature.adapter.controller.ControllerError;
 import kz.arabro.planogram.nomenclature.adapter.controller.response.CategoryResponse;
-import kz.arabro.planogram.nomenclature.domain.entity.Category;
+import kz.arabro.planogram.nomenclature.domain.entity.category.Category;
 
 import java.util.List;
 
@@ -16,16 +16,17 @@ public class CategoryResponseConverter {
         var categoryId = category.getId().getValue().toString();
         var name = category.getName().getValue();
         var color = category.getColor().toString();
-        String parentID = null;
-        if (category.getParentID().isPresent()) {
-            parentID = category.getParentID().get().getValue().toString();
-        }
+        var parentIDOpt = category.getParentID();
 
         var categoryResponse = new CategoryResponse();
         categoryResponse.setCategoryID(categoryId);
         categoryResponse.setName(name);
         categoryResponse.setColor(color);
-        categoryResponse.setParentID(parentID);
+
+        if (parentIDOpt.isPresent()) {
+            var parentID = parentIDOpt.get().getValue().toString();
+            categoryResponse.setParentID(parentID);
+        }
 
         return categoryResponse;
     }

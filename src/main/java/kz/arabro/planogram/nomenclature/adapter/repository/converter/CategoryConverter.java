@@ -2,10 +2,13 @@ package kz.arabro.planogram.nomenclature.adapter.repository.converter;
 
 import kz.arabro.planogram.nomenclature.adapter.repository.RepositoryError;
 import kz.arabro.planogram.nomenclature.adapter.repository.model.CategoryDbModel;
-import kz.arabro.planogram.nomenclature.domain.entity.*;
+import kz.arabro.planogram.nomenclature.domain.entity.category.Category;
+import kz.arabro.planogram.nomenclature.domain.entity.category.CategoryBuilder;
+import kz.arabro.planogram.nomenclature.domain.entity.category.CategoryID;
+import kz.arabro.planogram.nomenclature.domain.entity.category.Color;
+import kz.arabro.planogram.nomenclature.domain.entity.product.Name;
 
 import java.util.List;
-import java.util.UUID;
 
 public class CategoryConverter {
 
@@ -45,17 +48,17 @@ public class CategoryConverter {
         var id = category.getId().getValue();
         var name = category.getName().getValue();
         var color = category.getColor().toString();
-        UUID parentID = null;
-        if (category.getParentID().isPresent()){
-            parentID = category.getParentID().get().getValue();
-        }
+        var parentIDOpt = category.getParentID();
 
         var categoryDbModel = new CategoryDbModel();
         categoryDbModel.setId(id);
         categoryDbModel.setName(name);
         categoryDbModel.setColor(color);
-        categoryDbModel.setParentID(parentID);
 
+        if (parentIDOpt.isPresent()){
+            var parentID = parentIDOpt.get().getValue();
+            categoryDbModel.setParentID(parentID);
+        }
         return categoryDbModel;
     }
 
@@ -68,4 +71,6 @@ public class CategoryConverter {
                 map(CategoryConverter::toModel).
                 toList();
     }
+
+    private CategoryConverter() {}
 }

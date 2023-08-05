@@ -3,8 +3,8 @@ package kz.arabro.planogram.nomenclature.adapter.repository;
 import kz.arabro.planogram.nomenclature.adapter.repository.converter.BrandConverter;
 import kz.arabro.planogram.nomenclature.adapter.repository.jpa.BrandDao;
 import kz.arabro.planogram.nomenclature.boundary.repository.BrandRepository;
-import kz.arabro.planogram.nomenclature.domain.entity.Brand;
-import kz.arabro.planogram.nomenclature.domain.entity.BrandID;
+import kz.arabro.planogram.nomenclature.domain.entity.brand.Brand;
+import kz.arabro.planogram.nomenclature.domain.entity.brand.BrandID;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,13 +37,21 @@ public class BrandRepositoryImpl implements BrandRepository {
         if (brandID == null) {
             throw RepositoryError.errBrandIdIsRequired();
         }
+
         brandDao.deleteById(brandID.getValue());
     }
 
     @Transactional
     @Override
     public void update(Brand brand) {
-        save(brand);
+        if (brand == null) {
+            throw RepositoryError.errBrandIsRequired();
+        }
+
+        var id = brand.getId().getValue();
+        var name = brand.getName().getValue();
+
+        brandDao.updateById(id, name);
     }
 
     @Transactional
@@ -62,5 +70,15 @@ public class BrandRepositoryImpl implements BrandRepository {
     public List<Brand> findAll() {
         var brandDbModels = brandDao.findAll();
         return BrandConverter.toEntities(brandDbModels);
+    }
+
+    @Transactional
+    @Override
+    public boolean existsById(BrandID brandID) {
+        if (brandID == null) {
+            throw RepositoryError.errBrandIdIsRequired();
+        }
+
+        return brandDao.existsById(brandID.getValue());
     }
 }

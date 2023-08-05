@@ -4,30 +4,28 @@ import kz.arabro.planogram.nomenclature.domain.exception.CodedException;
 
 public class RepositoryError {
 
-    private static final String BRAND_DB_MODEL_IS_REQUIRED = "3fc0da0a-001";
-    private static final String BRAND_DB_MODELS_IS_REQUIRED = "3fc0da0a-002";
-    private static final String BRAND_IS_REQUIRED = "3fc0da0a-003";
-    private static final String BRANDS_IS_REQUIRED = "3fc0da0a-004";
-    private static final String BRAND_ID_IS_REQUIRED = "3fc0da0a-005";
-    private static final String PRODUCER_DB_MODEL_IS_REQUIRED = "3fc0da0a-006";
-    private static final String PRODUCER_DB_MODELS_IS_REQUIRED = "3fc0da0a-007";
-    private static final String PRODUCER_IS_REQUIRED = "3fc0da0a-008";
-    private static final String PRODUCERS_IS_REQUIRED = "3fc0da0a-009";
-    private static final String PRODUCER_ID_IS_REQUIRED = "3fc0da0a-010";
-    private static final String CATEGORY_DB_MODEL_IS_REQUIRED = "3fc0da0a-011";
-    private static final String CATEGORY_DB_MODELS_IS_REQUIRED = "3fc0da0a-012";
-    private static final String CATEGORY_IS_REQUIRED = "3fc0da0a-013";
-    private static final String CATEGORIES_IS_REQUIRED = "3fc0da0a-014";
-    private static final String CATEGORY_ID_IS_REQUIRED = "3fc0da0a-015";
-    private static final String CATEGORY_PARENT_ID_IS_REQUIRED = "3fc0da0a-016";
-    private static final String PRODUCT_IS_REQUIRED = "3fc0da0a-017";
-    private static final String PRODUCT_DB_MODEL_IS_REQUIRED = "3fc0da0a-018";
-    private static final String PRODUCT_DB_MODELS_IS_REQUIRED = "3fc0da0a-018";
-    private static final String PRODUCTS_IS_REQUIRED = "3fc0da0a-019";
-    private static final String PRODUCT_ID_IS_REQUIRED = "3fc0da0a-020";
-    private static final String PRODUCT_CODE_1C_IS_REQUIRED = "3fc0da0a-021";
-
-    private RepositoryError() {}
+    public static final String BRAND_DB_MODEL_IS_REQUIRED = "3fc0da0a-001";
+    public static final String BRAND_DB_MODELS_IS_REQUIRED = "3fc0da0a-002";
+    public static final String BRAND_IS_REQUIRED = "3fc0da0a-003";
+    public static final String BRANDS_IS_REQUIRED = "3fc0da0a-004";
+    public static final String BRAND_ID_IS_REQUIRED = "3fc0da0a-005";
+    public static final String PRODUCER_DB_MODEL_IS_REQUIRED = "3fc0da0a-006";
+    public static final String PRODUCER_DB_MODELS_IS_REQUIRED = "3fc0da0a-007";
+    public static final String PRODUCER_IS_REQUIRED = "3fc0da0a-008";
+    public static final String PRODUCERS_IS_REQUIRED = "3fc0da0a-009";
+    public static final String PRODUCER_ID_IS_REQUIRED = "3fc0da0a-010";
+    public static final String CATEGORY_DB_MODEL_IS_REQUIRED = "3fc0da0a-011";
+    public static final String CATEGORY_DB_MODELS_IS_REQUIRED = "3fc0da0a-012";
+    public static final String CATEGORY_IS_REQUIRED = "3fc0da0a-013";
+    public static final String CATEGORIES_IS_REQUIRED = "3fc0da0a-014";
+    public static final String CATEGORY_ID_IS_REQUIRED = "3fc0da0a-015";
+    public static final String CATEGORY_PARENT_ID_IS_REQUIRED = "3fc0da0a-016";
+    public static final String PRODUCT_IS_REQUIRED = "3fc0da0a-017";
+    public static final String PRODUCT_DB_MODEL_IS_REQUIRED = "3fc0da0a-018";
+    public static final String PRODUCT_DB_MODELS_IS_REQUIRED = "3fc0da0a-018";
+    public static final String PRODUCTS_IS_REQUIRED = "3fc0da0a-019";
+    public static final String PRODUCT_ID_IS_REQUIRED = "3fc0da0a-020";
+    public static final String PRODUCT_CODE_1C_IS_REQUIRED = "3fc0da0a-021";
 
     public static CodedException errBrandDbModelIsRequired() {
         var errMsg = "Value to create BrandDbModel is required";
@@ -138,4 +136,6 @@ public class RepositoryError {
         var errMsg = "Value to create Product Code1C is required";
         return new CodedException(PRODUCT_CODE_1C_IS_REQUIRED, errMsg);
     }
+
+    private RepositoryError() {}
 }

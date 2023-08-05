@@ -1,29 +1,31 @@
 package kz.arabro.planogram.nomenclature.domain.usecase;
 
-import kz.arabro.planogram.nomenclature.domain.entity.BrandID;
-import kz.arabro.planogram.nomenclature.domain.entity.CategoryID;
-import kz.arabro.planogram.nomenclature.domain.entity.ProducerID;
-import kz.arabro.planogram.nomenclature.domain.entity.ProductID;
+import kz.arabro.planogram.nomenclature.domain.entity.brand.BrandID;
+import kz.arabro.planogram.nomenclature.domain.entity.category.CategoryID;
+import kz.arabro.planogram.nomenclature.domain.entity.producer.ProducerID;
+import kz.arabro.planogram.nomenclature.domain.entity.product.ProductID;
 import kz.arabro.planogram.nomenclature.domain.exception.CodedException;
 
 public class UseCaseError {
-    private static final String BRAND_CREATE_INFO_IS_REQUIRED = "d281cc0a-001";
-    private static final String BRAND_ID_IS_REQUIRED = "d281cc0a-002";
-    private static final String BRAND_IS_NOT_FOUND = "d281cc0a-003";
-    private static final String PRODUCER_CREATE_INFO_IS_REQUIRED = "d281cc0a-004";
-    private static final String PRODUCER_EDIT_INFO_IS_REQUIRED = "d281cc0a-005";
-    private static final String PRODUCER_IS_NOT_FOUND = "d281cc0a-006";
-    private static final String CATEGORY_CREATE_INFO_IS_REQUIRED = "d281cc0a-007";
-    private static final String CATEGORY_EDIT_INFO_IS_REQUIRED = "d281cc0a-008";
-    private static final String CATEGORY_IS_NOT_FOUND = "d281cc0a-009";
-    private static final String CATEGORY_ID_IS_REQUIRED = "d281cc0a-010";
-    private static final String CATEGORY_PARENT_ID_IS_REQUIRED = "d281cc0a-011";
-    private static final String PRODUCT_CREATE_INFO_IS_REQUIRED = "d281cc0a-012";
-    private static final String PRODUCT_ID_IS_REQUIRED = "d281cc0a-013";
-    private static final String PRODUCT_EDIT_INFO_IS_REQUIRED = "d281cc0a-014";
-    private static final String PRODUCT_IS_NOT_FOUND = "d281cc0a-015";
-    private static final String PRODUCT_BY_CODE_1C_IS_NOT_FOUND = "d281cc0a-016";
-    private static final String PRODUCER_ID_IS_REQUIRED = "d281cc0a-017";
+    public static final String BRAND_CREATE_INFO_IS_REQUIRED = "d281cc0a-001";
+    public static final String BRAND_ID_IS_REQUIRED = "d281cc0a-002";
+    public static final String BRAND_IS_NOT_FOUND = "d281cc0a-003";
+    public static final String PRODUCER_CREATE_INFO_IS_REQUIRED = "d281cc0a-004";
+    public static final String PRODUCER_EDIT_INFO_IS_REQUIRED = "d281cc0a-005";
+    public static final String PRODUCER_IS_NOT_FOUND = "d281cc0a-006";
+    public static final String CATEGORY_CREATE_INFO_IS_REQUIRED = "d281cc0a-007";
+    public static final String CATEGORY_EDIT_INFO_IS_REQUIRED = "d281cc0a-008";
+    public static final String CATEGORY_IS_NOT_FOUND = "d281cc0a-009";
+    public static final String CATEGORY_ID_IS_REQUIRED = "d281cc0a-010";
+    public static final String CATEGORY_PARENT_ID_IS_REQUIRED = "d281cc0a-011";
+    public static final String PRODUCT_CREATE_INFO_IS_REQUIRED = "d281cc0a-012";
+    public static final String PRODUCT_ID_IS_REQUIRED = "d281cc0a-013";
+    public static final String PRODUCT_EDIT_INFO_IS_REQUIRED = "d281cc0a-014";
+    public static final String PRODUCT_IS_NOT_FOUND = "d281cc0a-015";
+    public static final String PRODUCT_BY_CODE_1C_IS_NOT_FOUND = "d281cc0a-016";
+    public static final String PRODUCER_ID_IS_REQUIRED = "d281cc0a-017";
+    public static final String BRAND_EDIT_INFO_IS_REQUIRED = "d281cc0a-018";
+    public static final String PRODUCT_CODE_1C_IS_REQUIRED = "d281cc0a-019";
 
     public static CodedException errBrandCreateInfoIsRequired() {
         var errMsg = "Value to create BrandCreateInfo is required";
@@ -109,4 +111,16 @@ public class UseCaseError {
         var errMsg = "Value to create ProducerID is required";
         return new CodedException(PRODUCER_ID_IS_REQUIRED, errMsg);
     }
+
+    public static CodedException errBrandEditInfoIsRequired() {
+        var errMsg = "Value to create BrandEditInfo is required";
+        return new CodedException(BRAND_EDIT_INFO_IS_REQUIRED, errMsg);
+    }
+
+    public static CodedException errProductCode1cIsRequired() {
+        var errMsg = "Value to create Code1c is required";
+        return new CodedException(PRODUCT_CODE_1C_IS_REQUIRED, errMsg);
+    }
+
+    private UseCaseError () {}
 }
