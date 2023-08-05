@@ -1,8 +1,6 @@
 package kz.arabro.planogram.nomenclature.adapter.repository;
 
-import kz.arabro.planogram.nomenclature.adapter.repository.converter.BrandConverter;
-import kz.arabro.planogram.nomenclature.adapter.repository.converter.CategoryConverter;
-import kz.arabro.planogram.nomenclature.adapter.repository.converter.ProducerConverter;
+import kz.arabro.planogram.nomenclature.adapter.repository.converter.ProductConverter;
 import kz.arabro.planogram.nomenclature.adapter.repository.jpa.BrandDao;
 import kz.arabro.planogram.nomenclature.adapter.repository.jpa.CategoryDao;
 import kz.arabro.planogram.nomenclature.adapter.repository.jpa.ProducerDao;
@@ -33,7 +31,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -106,60 +103,16 @@ class ProductRepositoryImplTest {
     }
 
     @Test
-    void update_ValueIsValid_UpdateProduct() {
+    void update_ValueIsValid_ProductUpdated() {
         var product = ProductStub.getProduct();
+        var expectedDbModel = ProductConverter.toModel(product);
+        ArgumentCaptor<ProductDbModel> captor = ArgumentCaptor.forClass(ProductDbModel.class);
 
-        var productID = product.getProductID().getValue();
-        var productCode1c = product.getCode1C();
-        var productRusName = product.getRusName().getValue();
-        var productKazName = product.getKazName().getValue();
-
-        var category = product.getCategory();
-        var categoryDbModel = CategoryConverter.toModel(category);
-
-        var brand = product.getBrand();
-        var brandDbModel = BrandConverter.toModel(brand);
-
-        var producer = product.getProducer();
-        var producerDbModel = ProducerConverter.toModel(producer);
-
-        var productBarcode = product.getBarcode().getValue();
-        var productPrice = product.getPrice().getValue();
-
-        var productSize = product.getSize();
-        var productHeight = String.valueOf(productSize.getHeight());
-        var productWeight = String.valueOf(productSize.getWeight());
-        var productLength = String.valueOf(productSize.getLength());
-
-        var productImagePath = product.getImagePath();
-
-        try (
-                var mockCategoryConverter = mockStatic(CategoryConverter.class);
-                var mockBrandConverter = mockStatic(BrandConverter.class);
-                var mockProducerConverter = mockStatic(ProducerConverter.class)
-        ) {
-            mockCategoryConverter.when(() -> CategoryConverter.toModel(category)).thenReturn(categoryDbModel);
-            mockBrandConverter.when(() -> BrandConverter.toModel(brand)).thenReturn(brandDbModel);
-            mockProducerConverter.when(() -> ProducerConverter.toModel(producer)).thenReturn(producerDbModel);
-
-            productRepository.update(product);
-
-            verify(productDao).updateById(
-                    productID,
-                    productCode1c,
-                    productRusName,
-                    productKazName,
-                    categoryDbModel,
-                    brandDbModel,
-                    producerDbModel,
-                    productBarcode,
-                    productPrice,
-                    productHeight,
-                    productWeight,
-                    productLength,
-                    productImagePath
-            );
-        }
+        productRepository.update(product);
+        verify(productDao, times(1)).updateById(captor.capture());
+        var actualDbModel = captor.getValue();
+        assertNotNull(actualDbModel);
+        assertEquals(expectedDbModel.getId(), actualDbModel.getId());
     }
 
     @Test
@@ -392,6 +345,7 @@ class ProductRepositoryImplTest {
         var productDbModelLength = productDbModel.getLength();
         var productDbModelImagePath = productDbModel.getImagePath();
 
+        assertTrue(categoryParentIDOpt.isPresent());
         assertAll(
                 () -> assertEquals(productDbModelID, productID),
                 () -> assertEquals(productDbModelCode1c, productCode1c),
@@ -400,7 +354,6 @@ class ProductRepositoryImplTest {
                 () -> assertEquals(categoryDbModelID, categoryID),
                 () -> assertEquals(categoryDbModelName, categoryName),
                 () -> assertEquals(categoryDbModelColor, categoryColor),
-                () -> assertTrue(categoryParentIDOpt.isPresent()),
                 () -> assertEquals(categoryDbModelParentID, categoryParentIDOpt.get().getValue()),
                 () -> assertEquals(brandDbModelID, brandID),
                 () -> assertEquals(brandDbModelName, brandName),

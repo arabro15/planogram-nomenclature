@@ -90,6 +90,7 @@ public class CreateProductUseCaseImpl implements CreateProductUseCase {
         var product = productBuilder.build();
 
         productRepository.save(product);
+
         return product;
     }
 }

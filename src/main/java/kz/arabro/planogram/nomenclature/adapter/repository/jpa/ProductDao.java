@@ -23,32 +23,21 @@ public interface ProductDao extends JpaRepository<ProductDbModel, UUID> {
     List<ProductDbModel> findByBrand(BrandDbModel brand);
 
     @Modifying
-    @Query("UPDATE ProductDbModel " +
-            "SET code1C = :code1c, " +
-            "rusName = :rusname, " +
-            "kazName = :kazname, " +
-            "category = :category, " +
-            "brand = :brand, " +
-            "producer = :producer, " +
-            "barcode = :barcode, " +
-            "price = :price, " +
-            "height = :height," +
-            "weight = :weight," +
-            "length = :length," +
-            "imagePath = :imagePath" +
-            " WHERE id = :id")
-    void updateById(@Param(value = "id") UUID id,
-                    @Param(value = "code1c") String code1c,
-                    @Param(value = "rusname") String rusName,
-                    @Param(value = "kazname") String kazName,
-                    @Param(value = "category") CategoryDbModel category,
-                    @Param(value = "brand") BrandDbModel brand,
-                    @Param(value = "producer") ProducerDbModel producer,
-                    @Param(value = "barcode") String barcode,
-                    @Param(value = "price") String price,
-                    @Param(value = "height") String height,
-                    @Param(value = "weight") String weight,
-                    @Param(value = "length") String length,
-                    @Param(value = "imagePath") String imagePath
-    );
+    @Query("""
+            UPDATE ProductDbModel
+            SET code1C = :#{#dbModel.code1C},
+                rusName = :#{#dbModel.rusName},
+                kazName = :#{#dbModel.kazName},
+                category = :#{#dbModel.category},
+                brand = :#{#dbModel.brand},
+                producer = :#{#dbModel.producer},
+                barcode = :#{#dbModel.barcode},
+                price = :#{#dbModel.price},
+                height = :#{#dbModel.height},
+                weight = :#{#dbModel.weight},
+                length = :#{#dbModel.length},
+                imagePath = :#{#dbModel.imagePath}
+            WHERE id = :#{#dbModel.id}
+            """)
+    void updateById(@Param(value = "dbModel") ProductDbModel dbModel);
 }

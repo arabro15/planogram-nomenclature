@@ -37,6 +37,7 @@ public class BrandRepositoryImpl implements BrandRepository {
         if (brandID == null) {
             throw RepositoryError.errBrandIdIsRequired();
         }
+
         brandDao.deleteById(brandID.getValue());
     }
 

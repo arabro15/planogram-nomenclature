@@ -72,7 +72,6 @@ public class ProductBuilder {
         return this;
     }
 
-    //CR: метод в билдере принято называть Build()
     public Product build() {
         checkRequiredFields();
 

@@ -49,6 +49,7 @@ public class ProducerController {
 
         var response = new CreateProducerResponse();
         response.setProducerID(producer.getId().getValue().toString());
+
         return response;
     }
 
@@ -82,7 +83,4 @@ public class ProducerController {
         var producers = readDataProducerUseCase.findAll();
         return ProducerResponseConverter.producersToResponses(producers);
     }
-
-
-
 }

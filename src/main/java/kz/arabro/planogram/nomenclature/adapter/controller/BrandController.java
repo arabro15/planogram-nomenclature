@@ -49,6 +49,7 @@ public class BrandController {
 
         var response = new CreateBrandResponse();
         response.setBrandID(brand.getId().getValue().toString());
+
         return response;
     }
 

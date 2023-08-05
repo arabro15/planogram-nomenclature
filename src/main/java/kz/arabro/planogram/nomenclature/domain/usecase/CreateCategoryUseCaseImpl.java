@@ -36,13 +36,16 @@ public class CreateCategoryUseCaseImpl implements CreateCategoryUseCase {
                 setID(CategoryID.newID()).
                 setName(name).
                 setColor(color);
+
         if (info.getParentID() != null) {
             var parentID = CategoryID.from(info.getParentID());
             categoryBuilder.setParentID(parentID);
         }
+
         var category = categoryBuilder.build();
 
         categoryRepository.save(category);
+
         return category;
     }
 }

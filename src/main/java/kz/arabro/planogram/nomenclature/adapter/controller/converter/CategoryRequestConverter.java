@@ -41,6 +41,7 @@ public class CategoryRequestConverter {
                 request.getCategoryID(),
                 request.getName()
         );
+
         categoryEditInfo.setColor(request.getColor());
         categoryEditInfo.setParentID(request.getParentID());
 

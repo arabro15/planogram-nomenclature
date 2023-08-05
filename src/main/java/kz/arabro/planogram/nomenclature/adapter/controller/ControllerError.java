@@ -21,8 +21,6 @@ public class ControllerError {
     public static final String PRODUCT_IS_REQUIRED = "05e416d3-015";
     public static final String PRODUCTS_IS_REQUIRED = "05e416d3-016";
 
-    private ControllerError() {}
-
     public static CodedException errBrandRequestIsRequired() {
         var errMsg = "Brand Request is required";
         return new CodedException(BRAND_REQUEST_IS_REQUIRED , errMsg);
@@ -102,4 +100,6 @@ public class ControllerError {
         var errMsg = "Products is null";
         return new CodedException(PRODUCTS_IS_REQUIRED, errMsg);
     }
+
+    private ControllerError() {}
 }

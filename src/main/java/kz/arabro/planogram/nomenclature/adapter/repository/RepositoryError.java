@@ -27,8 +27,6 @@ public class RepositoryError {
     public static final String PRODUCT_ID_IS_REQUIRED = "3fc0da0a-020";
     public static final String PRODUCT_CODE_1C_IS_REQUIRED = "3fc0da0a-021";
 
-    private RepositoryError() {}
-
     public static CodedException errBrandDbModelIsRequired() {
         var errMsg = "Value to create BrandDbModel is required";
         return new CodedException(BRAND_DB_MODEL_IS_REQUIRED, errMsg);
@@ -138,4 +136,6 @@ public class RepositoryError {
         var errMsg = "Value to create Product Code1C is required";
         return new CodedException(PRODUCT_CODE_1C_IS_REQUIRED, errMsg);
     }
+
+    private RepositoryError() {}
 }

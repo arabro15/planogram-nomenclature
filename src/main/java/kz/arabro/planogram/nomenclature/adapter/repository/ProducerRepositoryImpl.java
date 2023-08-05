@@ -37,6 +37,7 @@ public class ProducerRepositoryImpl implements ProducerRepository {
         if (producerID == null) {
             throw RepositoryError.errProducerIdIsRequired();
         }
+
         producerDao.deleteById(producerID.getValue());
     }
 
@@ -59,6 +60,7 @@ public class ProducerRepositoryImpl implements ProducerRepository {
         if (producerID == null) {
             throw RepositoryError.errProducerIdIsRequired();
         }
+
         return producerDao.findById(producerID.getValue()).
                 map(ProducerConverter::toEntity);
     }

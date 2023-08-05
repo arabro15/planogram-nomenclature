@@ -1,8 +1,5 @@
 package kz.arabro.planogram.nomenclature.adapter.repository;
 
-import kz.arabro.planogram.nomenclature.adapter.repository.converter.BrandConverter;
-import kz.arabro.planogram.nomenclature.adapter.repository.converter.CategoryConverter;
-import kz.arabro.planogram.nomenclature.adapter.repository.converter.ProducerConverter;
 import kz.arabro.planogram.nomenclature.adapter.repository.converter.ProductConverter;
 import kz.arabro.planogram.nomenclature.adapter.repository.jpa.BrandDao;
 import kz.arabro.planogram.nomenclature.adapter.repository.jpa.CategoryDao;
@@ -46,6 +43,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         }
 
         var productDbModel = ProductConverter.toModel(product);
+
         productDao.save(productDbModel);
     }
 
@@ -55,6 +53,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         if (productID == null) {
             throw RepositoryError.errProductIdIsRequired();
         }
+
         productDao.deleteById(productID.getValue());
     }
 
@@ -65,35 +64,9 @@ public class ProductRepositoryImpl implements ProductRepository {
             throw RepositoryError.errProductIsRequired();
         }
 
-        var id = product.getProductID().getValue();
-        var code1c = product.getCode1C();
-        var rusName = product.getRusName().getValue();
-        var kazName = product.getKazName().getValue();
-        var category = CategoryConverter.toModel(product.getCategory());
-        var brand = BrandConverter.toModel(product.getBrand());
-        var producer = ProducerConverter.toModel(product.getProducer());
-        var barcode = product.getBarcode().getValue();
-        var price = product.getPrice().getValue();
-        var height = String.valueOf(product.getSize().getHeight());
-        var weight = String.valueOf(product.getSize().getWeight());
-        var length = String.valueOf(product.getSize().getLength());
-        var imagePath = product.getImagePath();
+        var productDbModel = ProductConverter.toModel(product);
 
-        productDao.updateById(
-                id,
-                code1c,
-                rusName,
-                kazName,
-                category,
-                brand,
-                producer,
-                barcode,
-                price,
-                height,
-                weight,
-                length,
-                imagePath
-        );
+        productDao.updateById(productDbModel);
     }
 
     @Transactional
@@ -138,6 +111,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         }
 
         var productDbModels = productDao.findByProducer(producerDbModel.get());
+
         return ProductConverter.toEntities(productDbModels);
     }
 
@@ -155,6 +129,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         }
 
         var productDbModels = productDao.findByCategory(categoryDbModel.get());
+
         return ProductConverter.toEntities(productDbModels);
     }
 
@@ -172,6 +147,7 @@ public class ProductRepositoryImpl implements ProductRepository {
         }
 
         var productDbModels = productDao.findByBrand(brandDbModel.get());
+
         return ProductConverter.toEntities(productDbModels);
     }
 

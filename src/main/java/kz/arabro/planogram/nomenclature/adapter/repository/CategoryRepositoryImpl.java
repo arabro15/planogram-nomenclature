@@ -37,6 +37,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         if(categoryID == null) {
             throw RepositoryError.errCategoryIdIsRequired();
         }
+
         categoryDao.deleteById(categoryID.getValue());
     }
 
@@ -46,6 +47,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
         if (parentID == null) {
             throw RepositoryError.errCategoryParentIdIsRequired();
         }
+
         categoryDao.deleteByParentID(parentID.getValue());
     }
 

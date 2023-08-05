@@ -22,7 +22,8 @@ public class ReadDataBrandUseCaseImpl implements ReadDataBrandUseCase {
         var brandID = BrandID.from(brandIDStr);
         var brandOpt = brandRepository.findByID(brandID);
 
-        return brandOpt.orElseThrow(() -> UseCaseError.errBrandNotFound(brandID));
+        return brandOpt.orElseThrow(()
+                -> UseCaseError.errBrandNotFound(brandID));
     }
 
     @Override

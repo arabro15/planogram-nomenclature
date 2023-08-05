@@ -46,6 +46,7 @@ public class ProductController {
 
         var response = new CreateProductResponse();
         response.setProductID(product.getProductID().getValue().toString());
+
         return response;
     }
 
@@ -102,5 +103,4 @@ public class ProductController {
         var products = readDataProductUseCase.findByBrand(request.getBrandID());
         return ProductResponseConverter.productsToResponses(products);
     }
-
 }

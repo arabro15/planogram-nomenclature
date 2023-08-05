@@ -1,11 +1,12 @@
 package kz.arabro.planogram.nomenclature.domain.entity.category;
 
 public enum Color {
-    YELLOW,
-    RED,
-    GREEN,
-    GRAY,
     BLACK,
+    GRAY,
+    GREEN,
+    NONE,
+    RED,
     WHITE,
-    NONE
+    YELLOW
+
 }
