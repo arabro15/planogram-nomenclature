@@ -21,7 +21,6 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class BrandControllerTest {
-
     @Mock
     private CreateBrandUseCase createBrandUseCase;
 

@@ -242,8 +242,4 @@ class CategoryControllerTest {
             assertEquals(categoryParentID, categoryResponseParentID);
         }
     }
-
-
-
-
 }
