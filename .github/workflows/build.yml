@@ -26,12 +26,7 @@ jobs:
       - name: Maven verify
         run: mvn -B clean verify
 
-      - name: Codecov
-        uses: codecov/codecov-action@v3.1.4
-
-      - name: Test coverage to Codecov
+      - name: Test Coverage
         uses: codecov/codecov-action@v3.1.4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage1.xml,./coverage2.xml
-          flags: unittests
